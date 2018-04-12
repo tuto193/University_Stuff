@@ -4,16 +4,18 @@ public class Fraction {
     private double value;
 
     // Erster Teil der Aufgabe
-    public Fraction( int num, int den ) {
-        this.denominator = den;
-        Fraction( num );
-    }
+
     public Fraction( int num ) {
-        if( this.denominator == NULL ) {
-            this.denomitanor = 1;
+        if( this.denominator == 0 ) {
+            this.denominator = 1;
         }
         this.numerator = num;
         this.value = this.numerator / this.denominator;
+    }
+
+    public Fraction( int num, int den ) {
+        this.denominator = den;
+        Fraction( num );
     }
     ////////////////////////////////////////////////
 
@@ -37,7 +39,7 @@ public class Fraction {
         // also, wir tauschen den numerator und den denomitanor aus, und
         // multiplizieren wie üblich
         Fraction upsideDown = new Fraction( divisor.denominator, divisor.numerator );
-        Fraction result = new Fraction( this.multiply( upsideDown ) );
+        Fraction result = this.multiply( upsideDown );
 
         return result;
     }
