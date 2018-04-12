@@ -15,7 +15,7 @@ public class Fraction {
 
     public Fraction( int num, int den ) {
         this.denominator = den;
-        Fraction( num );
+        this.!!!!!;
     }
     ////////////////////////////////////////////////
 
