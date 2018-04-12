@@ -6,7 +6,15 @@ public class TestFraction {
     }
     public static void main( String[] args ) {
         Fraction myNumber1 = new Fraction( 9 );
-        Fraction myNumber2 = new Fraction( myNumber1 );
+        Fraction myNumber2 = new Fraction( 39, 7 );
+        Fraction multiplied = myNumber1.multiply( myNumber2 );
+        Fracton timesInt = myNumber2.multiply( 40 );
+        Fraction divided = myNumber1.divide( myNumber2 );
+        System.out.println(divided.toString() );
+        Fraction holyMoly = timesInt.multiply( myNumber1, myNumber2, multiplied,
+                                        divided );
+
+
         blackHole();
     }
 }
