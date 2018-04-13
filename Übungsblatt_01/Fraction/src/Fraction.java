@@ -6,18 +6,23 @@ public class Fraction {
     // Erster Teil der Aufgabe
 
     public Fraction( int num, int den ) {
-        this.value = num/den;
-        this.numerator = num;
-        this.denominator = den;
-        // Mit der unteren Schleife kürzen wir.
-        if( this.denominator > 1 ){
-            for( int i = this.denominator; i >= 2; i-- ) {
-                if( this.numerator % i == 0 && this.denominator % i == 0 ) {
-                    this.numerator /= i;
-                    this.denominator /= i;
+        if( den == 0 ) {
+            throw new RuntimeException( "0 is not a valid denominator!");
+        } else {
+            this.value = num/den;
+            this.numerator = num;
+            this.denominator = den;
+            // Mit der unteren Schleife kürzen wir.
+            if( this.denominator > 1 ){
+                for( int i = this.denominator; i >= 2; i-- ) {
+                    if( this.numerator % i == 0 && this.denominator % i == 0 ) {
+                        this.numerator /= i;
+                        this.denominator /= i;
+                    }
                 }
             }
         }
+
     }
 
     public Fraction( int num ) {
