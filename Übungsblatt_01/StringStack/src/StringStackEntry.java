@@ -5,7 +5,7 @@
  * @author Mathias Menninghaus (mathias.menninghaus@uos.de)
  * 
  */
-class StringStackEntry {
+public class StringStackEntry {
    
    /**
     * The next StringStackEntry
@@ -20,7 +20,7 @@ class StringStackEntry {
     * @param s
     *           String in Stack which is represented by this StringStackEntry
     */
-   StringStackEntry(String s) {
+   public StringStackEntry(String s) {
       this(s, null);
    }
 
@@ -32,16 +32,16 @@ class StringStackEntry {
     *           the StringStackEntry next will be visible if this
     *           StringStackEntry is removed from the stack.
     */
-   StringStackEntry(String s, StringStackEntry next) {
+   public StringStackEntry(String s, StringStackEntry next) {
       this.s = s;
       this.next = next;
    }
 
-   StringStackEntry getNext() {
+   public StringStackEntry getNext() {
       return this.next;
    }
 
-   String getString() {
+   public String getString() {
       return this.s;
    }
 }

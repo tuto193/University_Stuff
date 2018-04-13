@@ -45,7 +45,7 @@ public class StringStack {
        // We copy the first element into the new copy, then we pop the original
        // one back into the original stack and set the copy in the deep-copy
        while( !copyingMachine.empty() ) {
-           StringStackEntry copyEntry = new StringStackEntry( copyingMachine.peek().getString() );
+           StringStackEntry copyEntry = new StringStackEntry( copyingMachine.peek() );
 
            this.push( copyEntry.getString() );
            toCopy.push( copyingMachine.pop() );
