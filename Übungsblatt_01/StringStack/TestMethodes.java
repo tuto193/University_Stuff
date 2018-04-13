@@ -10,6 +10,12 @@ public class TestingMethodes{
         namesList.push( anotherName );
 
         // Reference copy
+        StringStack referenceList = referenceCopy( namesList );
 
+        // Shallow copy
+        StringStack shallowList = shallowCopy( namesList );
+
+        // Deep copy
+        StringStack deepList = deepCopy( namesList );
     }
 }

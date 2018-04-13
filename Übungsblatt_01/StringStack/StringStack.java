@@ -20,27 +20,22 @@ public class StringStack {
    */
    // Reference-Copy, because we are copying the same address (in memory)
    // from the old one into the new one
-   public StringStack referenceCopy( StringStack toCopy ) {
-       StringStack newCopy = new StringStack();
-       newCopy = toCopy;
-       return newCopy;
-   }
-
-   // Shallow-Copy, because we are creating a new space in memory, but copying
-   // the the same values (and references) from the old one into the new one.
-   public StringStack shallowCopy( StringStack toCopy ) {
-       StringStack newCopy = new StringStack();
-       newCopy.first = toCopy.first;
-       return newCopy;
-   }
+   // public StringStack ( StringStack toCopy ) {
+   //     this = toCopy;
+   // }
+   //
+   // // Shallow-Copy, because we are creating a new space in memory, but copying
+   // // the the same values (and references) from the old one into the new one.
+   // public StringStack ( StringStack toCopy ) {
+   //     this.first = toCopy.first;
+   // }
 
    // Deep-copy: we empty ALL of the contents into our copyingMachine (as to
    // conserve the right order when copying them back), then we make individual
    // copies of each StringStackEntry, put the copy into the new Deep-Copy,
    // and put the original StringStackEntry back into the original StringStack
-   public StringStack deepCopy( StringStack toCopy ) {
+   public StringStack ( StringStack toCopy ) {
        StringStack copyingMachine = new StringStack();
-       StringStack newCopy = new StringStack();
 
        // We empty all contents into the copyingMachine
        while( !toCopy.empty() ) {
@@ -52,10 +47,9 @@ public class StringStack {
        while( !copyingMachine.empty() ) {
            StringStackEntry copyEntry = new StringStackEntry( copyingMachine.peek().getString() );
 
-           newCopy.push( copyEntry.getString() );
+           this.push( copyEntry.getString() );
            toCopy.push( copyingMachine.pop() );
        }
-       return newCopy;
    }
 ///////////////////////////////////////////////////////////////////////////////
 
