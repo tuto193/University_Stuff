@@ -1,5 +1,8 @@
 # Ignore all non-consistent files
 
+# General invisible files
+*.directory
+
 # IDE config files
 *.idea
 *.iml
