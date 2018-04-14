@@ -2,7 +2,7 @@ public class TestFraction {
 
     // Diese Methode zeigt einfach, dass es einen Fehler gab.
     public static void blackHole() {
-        System.out.println( "OMG, es gab einen FEHLER HIER! \n|\nv" );
+        throw new RuntimeException(" Es gab einen Fehler hier \n | \n V")
     }
 
     // Ich habe keine Lust mehr, SYSTEM.OUT.PRINTLN einzutippen....
