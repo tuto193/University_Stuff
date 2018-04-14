@@ -22,9 +22,7 @@ public class TestMethodes{
         /*
             Hier wollen wir Testen, ob es eingentlich um eine Deep-Copy handelt!
         */
-        if( deepList == namesList ) {
-            throw new RuntimeException( "Es ist eine Reference Copy!" );
-        } else if( deepList.peek() == namesList.peek() ) {
+        if( deepList.peek() == namesList.peek() ) {
             throw new RuntimeException( "Es ist eine Shallow Copy " );
         } else if( deepList.peek().equals( namesList.peek() ) ) {
             throw new RuntimeException( "Es ist eine DEEP COPY! " );

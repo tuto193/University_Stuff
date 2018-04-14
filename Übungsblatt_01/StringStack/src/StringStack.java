@@ -18,39 +18,38 @@ public class StringStack {
    But we also want a few other types of "constructors" to copy another
    StringStack into them
    */
-   // Reference-Copy, because we are copying the same address (in memory)
-   // from the old one into the new one
-   // public StringStack ( StringStack toCopy ) {
-   //     this = toCopy;
-   // }
-   //
-   // // Shallow-Copy, because we are creating a new space in memory, but copying
-   // // the the same values (and references) from the old one into the new one.
-   // public StringStack ( StringStack toCopy ) {
-   //     this.first = toCopy.first;
-   // }
+
+    // Shallow-Copy, because we are creating a new space in memory, but copying
+    // the the same values (and references) from the old one into the new one.
+    // public StringStack ( StringStack toCopy ) {
+    //     this.first = toCopy.first;
+    // }
 
    // Deep-copy: we empty ALL of the contents into our copyingMachine (as to
    // conserve the right order when copying them back), then we make individual
    // copies of each StringStackEntry, put the copy into the new Deep-Copy,
    // and put the original StringStackEntry back into the original StringStack
-   public StringStack ( StringStack toCopy ) {
-       StringStack copyingMachine = new StringStack();
+    public StringStack ( StringStack toCopy ) {
+        StringStack copyingMachine = new StringStack();
 
-       // We empty all contents into the copyingMachine
-       while( !toCopy.empty() ) {
-           copyingMachine.push( toCopy.pop() );
-       }
+        // We empty all contents into the copyingMachine
+        while( !toCopy.empty() ) {
+            copyingMachine.push( toCopy.pop() );
+        }
 
-       // We copy the first element into the new copy, then we pop the original
-       // one back into the original stack and set the copy in the deep-copy
-       while( !copyingMachine.empty() ) {
-           StringStackEntry copyEntry = new StringStackEntry( copyingMachine.peek() );
+        // We copy the first element into the new copy, then we pop the original
+        // one back into the original stack and set the copy in the deep-copy
+        while( !copyingMachine.empty() ) {
+            String dummy1 = new String( copyingMachine.peek() );
+            String dummy2 = new String("");
+            for( int i = 0; i < dummy1.length(); i++ ) {
+                dummy2 += dummy1.charAt( i );
+            }
 
-           this.push( copyEntry.getString() );
-           toCopy.push( copyingMachine.pop() );
-       }
-   }
+            this.push( dummy2 );
+            toCopy.push( copyingMachine.pop() );
+        }
+    }
 ///////////////////////////////////////////////////////////////////////////////
 
    private StringStackEntry first;
