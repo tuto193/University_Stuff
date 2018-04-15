@@ -6,12 +6,12 @@ public class TestMethodes{
         String hisName = "Fabian";
         String anotherName = "Gong";
         StringStack namesList = new StringStack();
-        namesList.push( myName );
-        namesList.push( hisName );
-        namesList.push( anotherName );
+        namesList.push(myName);
+        namesList.push(hisName);
+        namesList.push(anotherName);
 
         // Reference copy
-        //StringStack referenceList = new StringStack( namesList );
+        //StringStack deepList = namesList;
 
         // Shallow copy
         //StringStack shallowList = new StringStack( namesList );
@@ -22,7 +22,9 @@ public class TestMethodes{
         /*
             Hier wollen wir Testen, ob es eingentlich um eine Deep-Copy handelt!
         */
-        if( deepList.peek() == namesList.peek() ) {
+        if( deepList ==namesList ){
+            throw new RuntimeException("Es ist eine Reference Copy");
+        }else if( deepList.peek() == namesList.peek() ) {
             throw new RuntimeException( "Es ist eine Shallow Copy " );
         } else if( deepList.peek().equals( namesList.peek() ) ) {
             throw new RuntimeException( "Es ist eine DEEP COPY! " );
