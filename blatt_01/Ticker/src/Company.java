@@ -2,7 +2,8 @@
 public class Company {
 
 	// name der Company
-	public static String name;
+	private String name;
+	private double stock;
 
 	// parameter f�r company
 	//constructor
@@ -17,7 +18,8 @@ public class Company {
 
 	//Ausgabe Name + Preis
 	public void changeStockPrice(double d) {
-		Ticker.getInstance().print(this.name + d);
+		this.stock += d;
+		Ticker.getInstance().print(this.name + this.stock);
 
 	}
 
