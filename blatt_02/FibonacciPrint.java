@@ -1,13 +1,9 @@
 public class FibonacciPrint {
 
-    public static void main( String[] args ) {
-        String input = args[0];
-        if( !input.matches("\\d") ) {
-            System.err.out( "Not a number. You are only allowed to input integers" );
-        }
+    public static void FibonacciPrint( String input ) {
         int n = Integer.parseInt(input);
         if( n < 0 ){
-            System.err.out( "Only positive numbers (or 0) are allowed!" );
+            System.err.println( "Only positive numbers (or 0) are allowed!" );
         }
         int a = 0;
         int b = 1;
@@ -26,5 +22,13 @@ public class FibonacciPrint {
             System.out.printf( "|  %d|       %d|", nacci, b);
             nacci++; 
         }
+    }
+
+
+    public static void main( String[] args ) {
+        if( !args[0].matches("\\d") ) {
+            System.err.println( "Not a number. You are only allowed to input integers" );
+        }
+        FibonacciPrint(args[0]);
     }
 }
