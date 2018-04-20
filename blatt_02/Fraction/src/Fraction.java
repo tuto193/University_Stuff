@@ -151,6 +151,12 @@ public class Fraction {
         return myFraction;
     }
 
+    /**
+     * Returns a Fraction result, parsed from the input Fraction toParse.
+     * 
+     * @param toParse a String that should contain a Fraction.
+     * @return      the Fraction parsed from the String toParse.
+     */
     public Fraction parseFraction( String toParse ) {
         if( !toParse.matches( "-?\\d+/\\d*" ) ) {
             throw new RuntimeException( "Not a fraction!. The input String was" +
