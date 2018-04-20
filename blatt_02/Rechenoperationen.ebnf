@@ -9,17 +9,20 @@ Zähler ::= "0" | Nenner ;
 (* Unsere Bruch ist einfach ein beliebiger Zähler über einem beliebigen Nenner*)
 Bruch ::= Zähler, "/", Nenner ;
 
+(* Rechenoperationen *)
+Rechenoperationen ::= ( Bruch "+" | "-" | "/" | "*" [Rechenoperationen | Bruch] ) | "(" Rechenoperationen ")" [Rechenoperationen] ;
+
 (*Addition*)
-Addition ::= ["(" Addition ")"] Bruch "+" Bruch {["+" Bruch ]} ;
-
+(* Addition ::= ( "(" Addition ")" [Addition] | Bruch "+" Bruch {["+" Bruch ]} ) ;
+ *)
 (*Subtraction*)
-Subtraction ::= ["(" Subtraction ")"] Bruch "-" Bruch {["-" Bruch ]} ;
-
+(* Subtraction ::= ( "(" Subtraction ")" [Subtraction] | Bruch "-" Bruch {["-" Bruch ]} ) ;
+ *)
 (*Multiplication*)
-Multiplication ::= ["(" Multiplication ")"] Bruch "*" Bruch {["*" Bruch ]} ;
-
+(* Multiplication ::= ( "(" Multiplication ")" [Multiplication ] | Bruch "*" Bruch {["*" Bruch ]} ) ;
+ *)
 (*Division*)
-Division ::= ["(" Division ")"] Bruch "/" Bruch {["/" Bruch ]} ;
-
+(* Division ::= ( "(" Division ")" [Division] ) | ( Bruch "/" Bruch {["/" Bruch ]} ) ;
+ *)
 (*Alle Operationen*)
-Rechenoperationen ::= Addition | Subtraction | Multiplication | Division {[ Rechenoperationen ]};
+(* Rechenoperationen ::= Addition | Subtraction | Multiplication | Division {[ Rechenoperationen ]}; *)
