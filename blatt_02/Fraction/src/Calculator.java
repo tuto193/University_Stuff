@@ -1,5 +1,5 @@
 public class Calculator {
-    public static final String MYREGEX = "-?\\d+/\\d*\\s[\\+\\-\\*/]\\s-?\\d+/\\d*";
+    public static final String MYREGEX = "-?\\d+/\\d*\\s\\S\\s-?\\d+/\\d*";
 
     public static void calculate( String input ) {
         if( !input.matches(MYREGEX) ) {
@@ -41,7 +41,7 @@ public class Calculator {
 
     public static void main( String[] args ) {
         if( !args[0].matches(MYREGEX) ) {
-            System.err.print( "No fractions and operators.The input arguments are not allowed.");
+            System.err.print( "No fractions and operators.The input arguments are not allowed.\n");
         } else {
             calculate( args[0] );
         }
