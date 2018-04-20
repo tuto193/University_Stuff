@@ -1,10 +1,24 @@
+/**
+ * This object represents a fraction ( a number with a numerator and a denominator)
+ */
 public class Fraction {
+    /**
+     * Object's attributes. A Numerator (top), a denominator (bottom) and a value
+     * (the absolut value of the number as decimal)
+     */
     private int numerator;
     private int denominator;
     private double value;
 
     // Erster Teil der Aufgabe
 
+    /**
+     * First constructor, assings values to all attributes of the object.
+     * 
+     * @param num the numerator
+     * @param den the denominator
+     * @throws RuntimeException if the denominator is 0
+     */
     public Fraction( int num, int den ) {
         if( den == 0 ) {
             throw new RuntimeException( "0 is not a valid denominator!");
@@ -25,6 +39,12 @@ public class Fraction {
 
     }
 
+    /**
+     * Second constructor, takes just a num numerator and assigns 1 as denominator. It 
+     * is linked to the first constructor.
+     * 
+     * @param num the numerator
+     */
     public Fraction( int num ) {
         this( num, 1 );
     }
@@ -32,20 +52,36 @@ public class Fraction {
     ////////////////////////////////////////////////
 
     // Zweiter Teil der Aufgabe
-    // Wir erzeugen eine neue Fraction mit denselben Werten zur Ausrechnung
+    /**
+     * Returns a Fraction, result of multiplying this Object with an int factor
+     * 
+     * @param factor an int that multiplies the fraction
+     * @return the result of multiplying the Fractions times the factor
+     */
     public Fraction multiply( int factor ) {
         Fraction result = new Fraction( this.numerator * factor, this.denominator );
         return result;
     }
 
-    // dasselbe wie oben, aber mit einer Fraction
+    /**
+     * Returns a Fraction that results  after multiplying the original one
+     * times another factor Fraction
+     * 
+     * @param factor a Fraction object
+     * @return  another Fraction. The result of multiplying the original times facor. 
+     */
     public Fraction multiply( Fraction factor ) {
         Fraction result = new Fraction( this.numerator * factor.numerator,
                                       this.denominator * factor.denominator );
         return result;
     }
 
-    // Wir teilen unsere Fraction durch eine Andere, und erzeugen eine neue Fraction
+    /**
+     * Returns a Fraction, result of dividing the original Fraction object by a divisor
+     * 
+     * @param divisor a Fraction, that will divide our original Fraction object.
+     * @return  a Fraction, that is result of the division.
+     */
     public Fraction divide( Fraction divisor ) {
         // Division ist genau wie multiplication aber in Kreuz
         // also, wir tauschen den numerator und den denomitanor aus, und
@@ -56,8 +92,13 @@ public class Fraction {
         return result;
     }
 
-    // hier brauchen wir eine Schleife, um alle "factors" mit der Fraction
-    // zu miltiplizieren und am Ende wird das Ergebnis "result" zurückgegeben.
+    /**
+     * Returns a Fraction. Does the same like multiply, but just uses an array
+     * of Fractions factors, that will multiply our original Fraction Object.
+     * 
+     * @param factors an array of Fraction Objects.
+     * @return      the resulting multiplication of all Fractions times the original.
+     */
     public Fraction multiply( Fraction... factors ) {
         Fraction result = new Fraction( this.numerator, this.denominator );
 
@@ -68,11 +109,14 @@ public class Fraction {
         return result;
     }
 
-    // Diese Methode gibt diese Fraction als STRING aus (a / b)
+    /**
+     * Returns the Fraction Object as String.
+     * 
+     * @return  a String that represents the Fraction Object as a/b
+     */
     public String toString() {
         String myFraction = "" + this.numerator + "/" + this.denominator;
         return myFraction;
     }
 
-    // Jetzt muss man das alles nur testen!
 }
