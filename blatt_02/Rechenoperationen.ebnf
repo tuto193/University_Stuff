@@ -3,23 +3,23 @@ ZiffernOhneNull ::= "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
 ZiffernMitNull ::= "0" | ZiffernOhneNull ;
 
 (* Nenner dürfen NIE mit einer Null anfangen, aber Zähler schon *)
-Nenner ::= ["-"], ZiffernOhneNull, {[ ZiffernMitNull ]}
+Nenner ::= ["-"], ZiffernOhneNull, {[ ZiffernMitNull ]} ;
 Zähler ::= "0" | Nenner ;
 
 (* Unsere Bruch ist einfach ein beliebiger Zähler über einem beliebigen Nenner*)
-Bruch ::= Zähler, "/", Nenner
+Bruch ::= Zähler, "/", Nenner ;
 
 (*Addition*)
-Addition ::= ["(" Addition ")"] Bruch "+" Bruch {["+" Bruch ]}
+Addition ::= ["(" Addition ")"] Bruch "+" Bruch {["+" Bruch ]} ;
 
 (*Subtraction*)
-Subtraction ::= ["(" Subtraction ")"] Bruch "-" Bruch {["-" Bruch ]}
+Subtraction ::= ["(" Subtraction ")"] Bruch "-" Bruch {["-" Bruch ]} ;
 
 (*Multiplication*)
-Multiplication ::= ["(" Multiplication ")"] Bruch "*" Bruch {["*" Bruch ]}
+Multiplication ::= ["(" Multiplication ")"] Bruch "*" Bruch {["*" Bruch ]} ;
 
 (*Division*)
-Division ::= ["(" Division ")"] Bruch "/" Bruch {["/" Bruch ]}
+Division ::= ["(" Division ")"] Bruch "/" Bruch {["/" Bruch ]} ;
 
 (*Alle Operationen*)
-Rechenoperationen ::= Addition | Subtraction | Multiplication | Division {[ Rechenoperationen ]}
+Rechenoperationen ::= Addition | Subtraction | Multiplication | Division {[ Rechenoperationen ]};
