@@ -10,7 +10,7 @@ Zähler ::= "0" | Nenner ;
 Bruch ::= Zähler, "/", Nenner ;
 
 (* Rechenoperationen *)
-Rechenoperationen ::= ( Bruch "+" | "-" | "/" | "*" [Rechenoperationen | Bruch] ) | "(" Rechenoperationen ")" [Rechenoperationen] ;
+Rechenoperationen ::= ( Bruch "+" | "-" | "/" | "*" Rechenoperationen | Bruch ) | "(" Rechenoperationen ")" [Rechenoperationen] ;
 
 (*Addition*)
 (* Addition ::= ( "(" Addition ")" [Addition] | Bruch "+" Bruch {["+" Bruch ]} ) ;
