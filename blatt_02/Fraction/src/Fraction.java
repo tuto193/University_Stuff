@@ -75,9 +75,9 @@ public class Fraction {
      *          Fraction Object
      */
     public Fraction substract( Fraction subtrahend ) {
-        int a = this.numerator * addend.denominator;
-        int b = this.denominator * addend.numerator;
-        int c = this.denominator * addend.denominator;
+        int a = this.numerator * subtrahend.denominator;
+        int b = this.denominator * subtrahend.numerator;
+        int c = this.denominator * subtrahend.denominator;
         Fraction result = new Fraction( a - b, c);
         return result;
     }
