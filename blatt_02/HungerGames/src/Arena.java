@@ -45,6 +45,7 @@ public class Arena {
         double alpha;
         if( x == 0 ) {
             atan = 0;
+            acos = 0;
         } else {
             atan = Math.atan( y / x );
         }
@@ -63,7 +64,8 @@ public class Arena {
             }
         }
         // We need not a reference from the normal (1,0), but from ( 0, 1)
-        alpha += 90;
-        return (int) ( Math.ceil(alpha / 30));
+        alpha = (180/Math.PI) * alpha;
+        alpha = alpha - 90;
+        return 12 - (int) ( ( (alpha + 360) % 360) / 30);
     }
 }
