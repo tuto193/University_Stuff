@@ -49,6 +49,38 @@ public class Fraction {
         this( num, 1 );
     }
 
+
+    /**
+     * Returns a Fraction. Adds this Fraction to an addend, by using the rule
+     * of the cross.
+     * 
+     * @param addend the Fraction Object that is being added
+     * @return  a Fraction, result of the addition of the original one and addend.
+     */
+    public Fraction add( Fraction addend ) {
+        int a = this.numerator * addend.denominator;
+        int b = this.denominator * addend.numerator;
+        int c = this.denominator * addend.denominator;
+        Fraction result = new Fraction( a + b, c);
+        return result;
+    }
+
+
+    /**
+     * Returns Fraction result. Substracst a subtrahend from the Fraction Object
+     * using the same process like the addition.
+     * 
+     * @param subtrahen a Fraction to substract with
+     * @return  a Fraction, result of substracting subtrahend from the original
+     *          Fraction Object
+     */
+    public Fraction substract( Fraction subtrahend ) {
+        int a = this.numerator * addend.denominator;
+        int b = this.denominator * addend.numerator;
+        int c = this.denominator * addend.denominator;
+        Fraction result = new Fraction( a - b, c);
+        return result;
+    }
     ////////////////////////////////////////////////
 
     // Zweiter Teil der Aufgabe
@@ -119,4 +151,15 @@ public class Fraction {
         return myFraction;
     }
 
+    public Fraction parseFraction( String toParse ) {
+        if( !toParse.matches( "-?\\d+/\\d*" ) ) {
+            throw new RuntimeException( "Not a fraction!. The input String was" +
+             " not a fraction!" );
+        }
+        String[] myFraction = toParse.split( "/" );
+        int numerator = Integer.parseInt( myFraction[0] );
+        int denominator = Integer.parseInt( myFraction[1] );
+        Fraction result = new Fraction( numerator, denominator );
+        return result;
+    }
 }
