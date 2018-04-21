@@ -1,5 +1,5 @@
 public class Calculator {
-    public static final String MYREGEX = "-?\\d+/\\d*\\s\\S\\s-?\\d+/\\d*";
+    public static final String MYREGEX = "-?\\d+/\\d*\\s[\\+\\-\\*/]\\s-?\\d+/\\d*";
 
     public static void calculate( String input ) {
         if( !input.matches(MYREGEX) ) {

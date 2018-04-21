@@ -158,7 +158,7 @@ public class Fraction {
      * @return      the Fraction parsed from the String toParse.
      */
     public Fraction parseFraction( String toParse ) {
-        if( !toParse.matches( "-?\\d+/\\d*" ) ) {
+        if( !toParse.matches( "-?\\d+/\\d+" ) ) {
             throw new RuntimeException( "Not a fraction!. The input String was" +
              " not a fraction!" );
         }
