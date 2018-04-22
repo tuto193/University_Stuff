@@ -9,12 +9,12 @@ Zähler ::= "0" | Nenner ;
 (* Unsere Bruch ist einfach ein beliebiger Zähler über einem beliebigen Nenner*)
 Bruch ::= Zähler, "/", Nenner ;
 
-Leerzeichen ::= " ";
+LZ ::= " ";
 
 Operator ::= "+" | "-" | "/" | "*";
 
 (* Rechenoperationen *)
-Rechenoperationen ::= ( Bruch, Leerzeichen, Operator, Leerzeichen, ( Rechenoperationen | Bruch ) ) | "(", Leerzeichen, Rechenoperationen, Leerzeichen, ")" [, Leerzeichen, Rechenoperationen] ;
+Rechenoperationen ::= ( Bruch, LZ, Operator, LZ, Rechenoperationen | Bruch ) | "(", LZ, Rechenoperationen, LZ, ")", [ LZ, Operator, LZ, Rechenoperationen | Bruch ] ;
 
 (*Addition*)
 (* Addition ::= ( "(" Addition ")" [Addition] | Bruch "+" Bruch {["+" Bruch ]} ) ;
