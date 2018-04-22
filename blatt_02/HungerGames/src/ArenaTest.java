@@ -37,18 +37,33 @@ public class ArenaTest {
         autoTest(1.5, 1.5, -1, test3);
         autoTest(1, 1, 2, test4);
         
-        /* int width = 30;
+        int width = 30;
         int height = 30;
         int[][] myArea = new int[width][height];
 
         for( int i = 0; i < width; i++ ) {
             for( int j = 0; j < height; j++ ) {
                 double coorX = ((double) i - 15)/ 10;
-                double coorY = ((double) j - 15)/ 10;
+                double coorY = ((double) 15 - j)/ 10;
                 int sector = myArena.getArea( coorX, coorY );
                 myArea[i][j] = sector;
                 System.out.printf("At [%f,%f] is the tribute in area: %d\n", coorX, coorY, sector );
             }
-        } */
+        }
+        for( int i = 0; i < height; i++ ) {
+            for( int j = 0; j < width; j++ ) {
+                String check = "" + myArea[j][i];
+                String secondCheck = "";
+                if( check.length() == 1 ) {
+                    secondCheck += "  " + check + " ";
+                } else if( check.length() == 2 ) {
+                    secondCheck += " " + check + " ";
+                }
+                System.out.print(secondCheck );
+                if( j == width - 1 ) {
+                    System.out.println();
+                }
+            }
+        }
     }
 }
