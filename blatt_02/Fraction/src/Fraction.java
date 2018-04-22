@@ -3,12 +3,10 @@
  */
 public class Fraction {
     /**
-     * Object's attributes. A Numerator (top), a denominator (bottom) and a value
-     * (the absolut value of the number as decimal)
+     * Object's attributes. A Numerator (top), a denominator (bottom) 
      */
     private int numerator;
     private int denominator;
-    private double value;
 
     // Erster Teil der Aufgabe
 
@@ -23,7 +21,6 @@ public class Fraction {
         if( den == 0 ) {
             throw new RuntimeException( "0 is not a valid denominator!");
         } else {
-            this.value = num/den;
             this.numerator = num;
             this.denominator = den;
             // Mit der unteren Schleife kürzen wir.
@@ -157,7 +154,7 @@ public class Fraction {
      * @param toParse a String that should contain a Fraction.
      * @return      the Fraction parsed from the String toParse.
      */
-    public Fraction parseFraction( String toParse ) {
+    public static Fraction parseFraction( String toParse ) {
         if( !toParse.matches( "-?\\d+/\\d+" ) ) {
             throw new RuntimeException( "Not a fraction!. The input String was" +
              " not a fraction!" );
