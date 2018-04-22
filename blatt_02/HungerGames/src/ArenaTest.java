@@ -55,9 +55,9 @@ public class ArenaTest {
                 String check = "" + myArea[j][i];
                 String secondCheck = "";
                 if( check.length() == 1 ) {
-                    secondCheck += "  " + check + " ";
+                    secondCheck += "  " + check;
                 } else if( check.length() == 2 ) {
-                    secondCheck += " " + check + " ";
+                    secondCheck += " " + check;
                 }
                 System.out.print(secondCheck );
                 if( j == width - 1 ) {
