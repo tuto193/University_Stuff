@@ -4,12 +4,10 @@
  * @author Mathias Menninghaus
  */
 public class Person {
-
    /**
     * The name of this Person.
     */
    private String name;
-
    /**
     * Constructor setting the name of this Person.
     *
@@ -18,7 +16,6 @@ public class Person {
    public Person(String name) {
       this.name = name;
    }
-
    /**
     * Returns the name of this Person.
     *
@@ -27,7 +24,6 @@ public class Person {
    public String getName() {
       return this.name;
    }
-
    /**
     * A Person can only be equal to another Person with exactly the same name.
     *
@@ -35,22 +31,17 @@ public class Person {
     * @return if this Person is equal to o
     */
    public boolean equals(Object o) {
-
       if (o == null) {
          return false;
       }
-
       if (o == this) {
          return true;
       }
-
       if (o instanceof Person) {
          return this.name.equals(((Person) o).getName());
       }
-
       return false;
    }
-
    /**
     * Produces the hash Code for this Person. Which simply is the hashCode of
     * its name.

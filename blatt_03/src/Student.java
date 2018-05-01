@@ -4,12 +4,10 @@
  * @author Mathias Menninghaus
  */
 public class Student extends Person {
-
    /**
     * Registration number of this Student.
     */
    private int matNr;
-
    /**
     * Custom constructor setting the name and the registration number of this
     * Student.
@@ -21,7 +19,6 @@ public class Student extends Person {
       super(name);
       this.matNr = matNr;
    }
-
    /**
     * Returns the registration number of this Student.
     *
@@ -30,7 +27,6 @@ public class Student extends Person {
    public int getMatNr() {
       return this.matNr;
    }
-
    /**
     * A Student can only be equal to another Student with exactly the same name
     * and matNr.
@@ -39,23 +35,18 @@ public class Student extends Person {
     * @return if this Student is equal to o
     */
    public boolean equals(Object o) {
-
       if (o == null) {
          return false;
       }
-
       if (o == this) {
          return true;
       }
-
       if (o instanceof Student) {
          return this.matNr == ((Student) o).getMatNr()
                && this.getName().equals(((Student) o).getName());
       }
-
       return false;
    }
-
    /**
     * Produces a hash-value for this Student.
     *
@@ -64,5 +55,4 @@ public class Student extends Person {
    public int hashCode() {
       return this.matNr + this.getName().hashCode();
    }
-
 }
