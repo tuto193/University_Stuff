@@ -7,9 +7,7 @@
 *.idea
 *.iml
 /bin/
-.project
-.settings
-.classpath
+/*/.gitignore
 
 # Compiled class file
 *.class
