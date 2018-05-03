@@ -37,6 +37,8 @@ public class AssertingTest {
         boolean transTest4 = firstPerson.equals(firstStudent) == firstStudent.equals(secondPerson) == firstPerson.equals(secondPerson);
         // from firstStudent to secondPerson
         boolean transTest5 = firstStudent.equals(firstPerson) == firstPerson.equals(secondPerson) == firstStudent.equals(secondPerson);
+        // from secondPerson to firstStudent
+        boolean transTest6 = secondPerson.equals(firstPerson) == firstPerson.equals(firstStudent) == secondPerson.equals(firstStudent);
 
 
     }
