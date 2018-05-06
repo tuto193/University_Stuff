@@ -20,18 +20,19 @@ public class AssertingTest {
     /**
      * Prints the corresponding sentence, for the type of test being made. (With a max of 3 people)
      * 
-     * @param persons an array of Person Ojbects
-     * @throws RuntimeException if called with 4 or more Person Obcejts
+     * @param persons an array of Person Objects
+     * @throws RuntimeException if called with 4 or more Person Objects
      */
     public static void printTest( Person... persons ) {
-        System.out.print("Test " + persons[0] );
+        System.out.print("Test " + persons[0].getName() );
         if( persons.length == 2 ) {
-            System.out.println( " against " + persons[1] );
+            System.out.print( " against " + persons[1].getName() );
         } else if( persons.length == 3 ) {
-            System.out.println( " through " + persons[1] + " up to " + persons[2] );
+            System.out.print( " through " + persons[1].getName() + " up to " + persons[2].getName() );
         } else if( persons.length > 3 ) {
             throw new RuntimeException("We can only test a maxmimum of 3 persons at a time! " );
         }
+        System.out.println();
     }
 
     /**
@@ -45,11 +46,11 @@ public class AssertingTest {
     }
 
     /**
-     * Returns true, if a and b are equal and viceversa
+     * Returns true, if a and b are equal and vice versa
      * 
      * @param a a Person Object
      * @param b another Person Object
-     * @return true if a, b are equal and viceversa
+     * @return true if a, b are equal and vice versa
      */
     public static boolean checkSymm( Person a, Person b ) {
         return a.equals(b) == b.equals(a);
