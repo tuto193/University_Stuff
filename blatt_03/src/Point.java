@@ -14,4 +14,8 @@ public class Point extends Geometry {
         }
         this.coordinates = iniCoord;
     }
+
+    public double volume() {
+        return 0;
+    }
 }
