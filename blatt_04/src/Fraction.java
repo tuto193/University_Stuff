@@ -9,6 +9,11 @@ package src;
 public class Fraction extends Number {
 
    /**
+	 * Auto-generated serialVersionUID by Eclipse. 
+	 */
+	private static final long serialVersionUID = 9130319389134688989L;
+
+/**
     * The regular expression that defines the String representation of a
     * Fraction.
     */
@@ -191,4 +196,23 @@ public class Fraction extends Number {
    public String toString() {
       return numerator + "/" + denominator;
    }
+
+   ///////////////////////////////////////////////////////////////////////////
+   ////////////////                   ////////////////////////////////////////
+   //////////////// BEGIN AUFGABE 4.1 ////////////////////////////////////////
+   ////////////////                   ////////////////////////////////////////
+   ///////////////////////////////////////////////////////////////////////////
+   public int intValue() {
+         return (int) (numerator / denominator);
+   }
+   public double doubleValue() {
+         return (double) (numerator / denominator);
+   }
+   public float floatValue() {
+         return (float) (numerator / denominator);
+   }
+   public long longValue() {
+         return (long) (numerator / denominator);
+   }
+
 }
