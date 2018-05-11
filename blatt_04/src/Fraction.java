@@ -6,7 +6,7 @@ package src;
  * @author Mathias Menninghaus (mathias.menninghaus@uos.de)
  * 
  */
-public class Fraction {
+public class Fraction extends Number {
 
    /**
     * The regular expression that defines the String representation of a
