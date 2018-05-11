@@ -15,7 +15,7 @@ public class Fraction extends Number {
 
 /**
     * The regular expression that defines the String representation of a
-    * Fraction.
+    * Fraction, a Decimal or a Natural number.
     */
    public static final String REGEX = "-?\\d+/\\d*[1-9]\\d*";
 
