@@ -1,3 +1,4 @@
+package src;
 /**
  * Contains a main class to execute a Calculate instance, which calculates an
  * operation on two Fraction instances.

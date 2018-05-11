@@ -1,3 +1,4 @@
+package src;
 /**
  * Every instance of Fraction represents a fraction with numerator and
  * denominator.
