@@ -16,6 +16,15 @@ public class Calculator {
    public static final String DIVIDE = "/";
 
    /**
+    * Aditional Regexes
+    */
+    // Integers
+    public static final String REGEX_NATURAL = "-?\\d+";
+    // Decimals
+    public static final String REGEX_DECIMAL = "-?\\d+\\.\\d+";
+
+
+   /**
     * @param args
     */
    public static void main(String[] args) {
@@ -42,7 +51,7 @@ public class Calculator {
     */
    private static void printUsage() {
       System.out.println("Usage: java Calculator fraction operator fraction");
-      System.out.println("a fraction is defined by " + Fraction.REGEX);
+      System.out.println("a fraction is defined by " + Fraction.REGEX_FRACTION);
       System.out.println("valid operators are +,-, *, /");
    }
 
@@ -144,7 +153,7 @@ public class Calculator {
     * @return A Fraction representing the given String or null.
     */
    private Fraction parseFraction(String fraction) {
-      if (!fraction.matches(Fraction.REGEX)) {
+      if (!fraction.matches(Fraction.REGEX_FRACTION)) {
          errorMessage = fraction + " is not a valid Fraction";
          return null;
       }

@@ -17,7 +17,7 @@ public class Fraction extends Number {
     * The regular expression that defines the String representation of a
     * Fraction, a Decimal or a Natural number.
     */
-   public static final String REGEX = "-?\\d+/\\d*[1-9]\\d*";
+   public static final String REGEX_FRACTION = "-?\\d+/\\d*[1-9]\\d*";
 
    /**
     * Creates greatest common divisor for a and b.
@@ -42,12 +42,22 @@ public class Fraction extends Number {
     *            if String s is not a valid Fraction
     */
    public static Fraction parseFraction(String s) {
-      if (!s.matches(REGEX)) {
+      if (!s.matches(REGEX_FRACTION) && !s.matches(Calculator.REGEX_DECIMAL) && !s.matches(Calculator.REGEX_NATURAL) ) {
          throw new RuntimeException("Parsing error");
       }
-      String[] splitted = s.split("/");
-      return new Fraction(Integer.parseInt(splitted[0]),
-            Integer.parseInt(splitted[1]));
+      if( s.matches(REGEX_FRACTION) ) {
+            String[] splitted = s.split("/");
+            return new Fraction(Integer.parseInt(splitted[0]),
+                  Integer.parseInt(splitted[1]));
+      } else if( s.matches( Calculator.REGEX_DECIMAL ) ) {
+            String[] splitted = s.split( "." );
+            int newDenominator = 1;
+            for( int i = 0; i < splitted[2].length(); i++ ) {
+                  newDenominator *= 10;
+            }
+            return new Fraction( Integer.parseInt( splitted[0] + splitted[2] ), newDenominator );
+      }
+      return new Fraction( Integer.parseInt(s), 1 );
    }
 
    private int numerator;
@@ -202,15 +212,38 @@ public class Fraction extends Number {
    //////////////// BEGIN AUFGABE 4.1 ////////////////////////////////////////
    ////////////////                   ////////////////////////////////////////
    ///////////////////////////////////////////////////////////////////////////
+   /**
+    * Returns the int value of this Fraction Object
+    * 
+    * @return the int value of this Fraction
+    */
    public int intValue() {
          return (int) (numerator / denominator);
    }
+
+   /**
+    * Returns the double value of this Fraction Object
+    * 
+    * @return the double value of this Fraction.
+    */
    public double doubleValue() {
          return (double) (numerator / denominator);
    }
+
+   /**
+    * Returns the float value of this Fraction Object.
+    * 
+    * @return the float value of this Fraction
+    */
    public float floatValue() {
          return (float) (numerator / denominator);
    }
+
+   /**
+    * Returns the long value of this Fraction Object.
+    *
+    * @return the long value of this Fraction
+    */
    public long longValue() {
          return (long) (numerator / denominator);
    }
