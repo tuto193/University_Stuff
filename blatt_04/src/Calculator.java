@@ -153,7 +153,7 @@ public class Calculator {
     * @return A Fraction representing the given String or null.
     */
    private Fraction parseFraction(String fraction) {
-      if (!fraction.matches(Fraction.REGEX_FRACTION)) {
+      if (!fraction.matches(Fraction.REGEX_FRACTION) && !fraction.matches(REGEX_DECIMAL) && !fraction.matches(REGEX_NATURAL) ) {
          errorMessage = fraction + " is not a valid Fraction";
          return null;
       }

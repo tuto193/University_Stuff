@@ -218,7 +218,7 @@ public class Fraction extends Number {
     * @return the int value of this Fraction
     */
    public int intValue() {
-         return (int) (numerator / denominator);
+         return (int) (this.numerator / this.denominator);
    }
 
    /**
@@ -227,7 +227,7 @@ public class Fraction extends Number {
     * @return the double value of this Fraction.
     */
    public double doubleValue() {
-         return (double) (numerator / denominator);
+         return (double) (this.numerator / this.denominator);
    }
 
    /**
@@ -236,7 +236,7 @@ public class Fraction extends Number {
     * @return the float value of this Fraction
     */
    public float floatValue() {
-         return (float) (numerator / denominator);
+         return (float) (this.numerator / this.denominator);
    }
 
    /**
@@ -245,7 +245,7 @@ public class Fraction extends Number {
     * @return the long value of this Fraction
     */
    public long longValue() {
-         return (long) (numerator / denominator);
+         return (long) (this.numerator / this.denominator);
    }
 
 }
