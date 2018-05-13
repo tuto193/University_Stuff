@@ -50,12 +50,12 @@ public class Fraction extends Number {
             return new Fraction(Integer.parseInt(splitted[0]),
                   Integer.parseInt(splitted[1]));
       } else if( s.matches( Calculator.REGEX_DECIMAL ) ) {
-            String[] splitted = s.split( "." );
+            String[] splitted = s.split("\\.");
             int newDenominator = 1;
-            for( int i = 0; i < splitted[2].length(); i++ ) {
+            for( int i = 0; i < splitted[1].length(); i++ ) {
                   newDenominator *= 10;
             }
-            return new Fraction( Integer.parseInt( splitted[0] + splitted[2] ), newDenominator );
+            return new Fraction( Integer.parseInt( splitted[0] + splitted[1] ), newDenominator );
       }
       return new Fraction( Integer.parseInt(s), 1 );
    }
