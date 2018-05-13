@@ -1,73 +1,113 @@
 package Aufgabe3;
 
+/**
+ * A simple linked list. One may go through this list by {@link #advance()} until
+ * the last position ({@link #endpos()}) is reached. One also may
+ * {@link #delete()} and {@link #add(Object)} elements. After advancing it is
+ * possible to go back to the beginning by {@link #reset()}.
+ * 
+ * @author Mathias Menninghaus (mathias.menninghaus@uos.de)
+ * 
+ */
 public class List {
-    private ListItem head;
-    private ListItem tail;
 
-    public List () {
-        this( null );
-    }
+   /**
+    * Reference on the first Entry of this List
+    */
+   private Entry begin;
+   /**
+    * References before the actual Entry of this List
+    */
+   private Entry pos;
 
-    public List( ListItem item ) {
-        this.head = item;
-        this.tail = item;
-    }
+   /**
+    * Create a new empty List.
+    */
+   public List() {
+      pos = begin = new Entry();
+   }
 
-    public void append( LibraryItem item ) {
-        ListItem toAppend = new ListItem( item );
+   /**
+    * Determines if this List is empty or not.
+    * 
+    * @return <code>true</code>, if there are no elements in this List
+    */
+   public boolean empty() {
+      return begin.next == null;
+   }
 
-        if( tail != null ) {
-            this.tail.setNext(toAppend);
-        }
-        this.tail = toAppend;
+   /**
+    * Determines if it is possible to {@link #advance()} in this List. Returns
+    * <code>true</code> if the last position of this List has been reached. An
+    * {@link #empty()} List will alway deliver <code>true</code>
+    * 
+    * @return <code>true</code> if the last Entry in this List already has been
+    *         reached.
+    */
+   public boolean endpos() { // true, wenn am Ende
+      return pos.next == null;
+   }
 
-        if( head == null ) {
-            this.head = toAppend;
-        }
-    }
+   /**
+    * Returns to the beginning of this List.
+    */
+   public void reset() {
+      pos = begin;
+   }
 
-    public void prepend( LibraryItem item ) {
-        ListItem toPrepend = new ListItem( item );
+   /**
+    * Advances one step in this List.
+    * 
+    * @throws RuntimeExcpetion
+    *            if the last Entry of this List already has been reached.
+    */
+   public void advance() {
+      if (endpos()) {
+         throw new RuntimeException("Already at the end of this List");
+      }
+      pos = pos.next;
+   }
 
-        toPrepend.setNext(this.head);
-        this.head = toPrepend;
+   /**
+    * Returns the actual element of this List.
+    * 
+    * @return the actual element
+    * 
+    * @throws RuntimeException
+    *            if the last Entry of this List already has been reached.
+    */
+   public Object elem() {
+      if (endpos()) {
+         throw new RuntimeException("Already at the end of this List");
+      }
+      return pos.next.o;
+   }
 
-        if( tail == null ) {
-            this.tail = toPrepend;
-        }
-    }
+   /**
+    * Inserts <code>o</code> in this List. It will be placed before the actual
+    * element. After insertion the inserted element will become the actual
+    * element.
+    * 
+    * @param x
+    *           the element to be inserted
+    */
+   public void add(Object x) {
+      Entry newone = new Entry(x, pos.next);
 
-    public LibraryItem getHead() {
-        if( head == null ) {
-            return null;
-        }
-        return head.getValue();
-    }
+      pos.next = newone;
+   }
 
-    public LibraryItem getTail() {
-        if( tail == null ) {
-            return null;
-        }
-        return tail.getValue();
-    }
-
-    public boolean isEmpty() {
-        return (head == null);
-    }
-
-    public LibraryItem pop() {
-        ListItem toPoop = this.head;// lol
-        if( toPoop == null ) {
-            return null;
-        }
-
-        this.head = toPoop.getNext();
-        toPoop.setNext( null );
-
-        if( this.tail == toPoop ) {
-            this.tail = null;
-        }
-
-        return toPoop.getValue();
-    }
+   /**
+    * Deletes the actual element of this List. The element after the actual
+    * element will become the new actual element.
+    * 
+    * @throws RuntimeException
+    *            if the last Entry of this List already has been reached.
+    */
+   public void delete() {
+      if (endpos()) {
+         throw new RuntimeException("Already at the end of this List");
+      }
+      pos.next = pos.next.next;
+   }
 }
