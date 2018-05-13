@@ -18,8 +18,10 @@ public class Library {
      * The library can also be instantiated with an item already
      */
     public Library( LibraryItem item ) {
-        this.inventory = new List( null );
-        this.inventory.append(item); 
+        this.inventory = new List();
+        if( item != null ) {
+            this.inventory.append(item); 
+        }
     }
 
     /**
@@ -69,7 +71,7 @@ public class Library {
      */
     public List search( String text ) {
         // if the Library's inventory is empty, you might as well not check it
-        if( inventory.isEmpty() ) {
+        if( this.inventory.isEmpty() ) {
             return null;
         }
         // a temporary list and a list of items that match the description given
@@ -85,9 +87,10 @@ public class Library {
             // I could change it to look better directly from the abstract
             // class itself, and check for directors and all that...
             // but I won't, in order to not risk my points ='(
-            if( ( (Book) inventory.getHead() ).getDescription().toLowerCase().contains( text.toLowerCase() ) ) {
+            LibraryItem onTop = inventory.getHead();
+            if( onTop.getClass() == Book.class && ((Book) onTop).getDescription().toLowerCase().contains( text.toLowerCase() ) ) {
                 matchingItems.prepend( inventory.getHead() );
-            } else if( ( (BluRay) inventory.getHead() ).getDescription().toLowerCase().equals( text.toLowerCase() ) ) {
+            } else if( onTop.getClass() == BluRay.class && ((BluRay) onTop).getDescription().toLowerCase().equals( text.toLowerCase() ) ) {
                 matchingItems.prepend( inventory.getHead() );
             }
             // We need to empty our inventory into the temporaryList in order to advance

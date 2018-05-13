@@ -84,17 +84,17 @@ public class List {
      * @return the lowest LibraryItem on this list
      */
     public LibraryItem getTail() {
-        if( tail == null ) {
+        if( this.tail == null ) {
             return null;
         }
-        return tail.getValue();
+        return this.tail.getValue();
     }
 
     /**
      * Check whether the list is empty
      */
     public boolean isEmpty() {
-        return (head == null);
+        return (this.head.getValue() == null);
     }
 
     /**
