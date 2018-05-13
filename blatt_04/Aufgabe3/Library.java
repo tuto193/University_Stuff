@@ -1,7 +1,5 @@
 package Aufgabe3;
 
-import javax.management.RuntimeErrorException;
-
 /**
  * A class representing a simple library
  * @author Carlos A. Parra F.
