@@ -1,6 +1,8 @@
 package Aufgabe3;
 /**
  * A simple LinkedList, which delete functionalities of a Stack (Pop)
+ * 
+ * @author Carlos A. Parra F.
  */
 public class List {
     /**
@@ -95,6 +97,11 @@ public class List {
         return (head == null);
     }
 
+    /**
+     * Returns the top-most item of this List and also removing it from the list
+     * 
+     * @return top-most LibraryItem
+     */
     public LibraryItem pop() {
         ListItem toPoop = this.head;// lol
         if( toPoop == null ) {
@@ -111,6 +118,9 @@ public class List {
         return toPoop.getValue();
     }
 
+    /**
+     * Returns the current length of the list
+     */
     public int getLength() {
         return this.length;
     }
