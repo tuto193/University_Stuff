@@ -27,7 +27,6 @@ public class Library {
      * @param item a LibraryItem Object
      */
     public void addItem( LibraryItem item ) {
-        this.inventory = new List();
         this.inventory.append(item);
     }
 
