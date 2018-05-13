@@ -14,7 +14,7 @@ public class Library {
     }
 
     public Library( LibraryItem item ) {
-        }
+        this.inventory.append(item); 
     }
 
     /**

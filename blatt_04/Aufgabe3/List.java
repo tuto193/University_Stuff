@@ -54,4 +54,20 @@ public class List {
     public boolean isEmpty() {
         return (head == null);
     }
+
+    public LibraryItem pop() {
+        ListItem toPoop = this.head;// lol
+        if( toPoop == null ) {
+            return null;
+        }
+
+        this.head = toPoop.getNext();
+        toPoop.setNext( null );
+
+        if( this.tail == toPoop ) {
+            this.tail = null;
+        }
+
+        return toPoop.getValue();
+    }
 }
