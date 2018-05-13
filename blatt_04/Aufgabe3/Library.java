@@ -5,11 +5,17 @@ package Aufgabe3;
  */
 public class Library {
 
-    private List myItems;
+    private List inventory;
     /**
      * The Constructor, doesn't requiere much
      */
-    public Library () {}
+    public Library () {
+        this( null );
+    }
+
+    public Library( LibraryItem item ) {
+        }
+    }
 
     /**
      * Adds item to the myItems List of this Library
@@ -17,7 +23,6 @@ public class Library {
      * @param item a LibraryItem Object
      */
     public void addItem( LibraryItem item ) {
-
     }
 
     /**
@@ -29,8 +34,8 @@ public class Library {
     }
 
     /**
-     * Returns a List of items, whose titles, authors, 
-     * directors or descriptions match the given text.
+     * Returns a List of items, whose title
+     * matches the given text.
      * 
      * @param text a String against which the List of items
      *             of this library will be searched.
