@@ -52,9 +52,9 @@ public class Library {
             // I could change it to look better directly from the abstract
             // class itself, and check for directors and all that...
             // but I won't, in order to not risk my points ='(
-            if( ( (Book) inventory.getHead() ).getTile().equals( text ) ) {
+            if( ( (Book) inventory.getHead() ).getDescription().equals( text ) ) {
                 matchingItems.prepend( inventory.getHead() );
-            } else if( ( (BluRay) inventory.getHead() ).getTitle().equals( text ) ) {
+            } else if( ( (BluRay) inventory.getHead() ).getDescription().equals( text ) ) {
                 matchingItems.prepend( inventory.getHead() );
             }
             tmpList.prepend( inventory.pop() );
