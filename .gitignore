@@ -9,6 +9,9 @@
 /bin/
 /*/.gitignore
 
+#I don't want to see UML diagrams
+*.xmi
+
 # Compiled class file
 *.class
 
