@@ -16,6 +16,9 @@ public class Library {
         this( null );
     }
 
+    /**
+     * The library can also be instantiated with an item already
+     */
     public Library( LibraryItem item ) {
         this.inventory.append(item); 
     }
