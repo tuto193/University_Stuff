@@ -1,15 +1,25 @@
 package Aufgabe3;
-
+/**
+ * A simple LinkedList, which delete functionalities of a Stack (Pop)
+ */
 public class List {
-
+    /**
+     * The List's head, tail and it's current length
+     */
     private ListItem head;
     private ListItem tail;
     private int length = 0;
 
+    /**
+     * A simple constructor
+     */
     public List () {
         this( null );
     }
 
+    /**
+     * A more verbose constructor
+     */
     public List( ListItem item ) {
         this.head = item;
         this.tail = item;
@@ -17,7 +27,12 @@ public class List {
             length++;
         }
     }
-
+    
+    /**
+     * Append the item to the list
+     * 
+     * @param item a LibraryItem to be appended
+     */
     public void append( LibraryItem item ) {
         ListItem toAppend = new ListItem( item );
 
@@ -32,6 +47,11 @@ public class List {
         length++;
     }
 
+    /**
+     * Preprend the item to the List
+     * 
+     * @param item a LibraryItem to be prepended to the list
+     */
     public void prepend( LibraryItem item ) {
         ListItem toPrepend = new ListItem( item );
 
@@ -44,6 +64,11 @@ public class List {
         length++;
     }
 
+    /**
+     * Peek the top-most item on this stack... eh... List
+     * 
+     * @return the top-most LibraryItem of the List
+     */
     public LibraryItem getHead() {
         if( head == null ) {
             return null;
@@ -51,6 +76,11 @@ public class List {
         return head.getValue();
     }
 
+    /**
+     * Peek the lowest item on the List
+     * 
+     * @return the lowest LibraryItem on this list
+     */
     public LibraryItem getTail() {
         if( tail == null ) {
             return null;
@@ -58,6 +88,9 @@ public class List {
         return tail.getValue();
     }
 
+    /**
+     * Check whether the list is empty
+     */
     public boolean isEmpty() {
         return (head == null);
     }

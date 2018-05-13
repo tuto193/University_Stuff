@@ -43,6 +43,9 @@ public class Library {
      *          the description given on text.
      */
     public List search( String text ) {
+        if( inventory.isEmpty() ) {
+            return null;
+        }
         List tmpList = new List(null);
         List matchingItems = new List( null);
 
@@ -52,9 +55,9 @@ public class Library {
             // I could change it to look better directly from the abstract
             // class itself, and check for directors and all that...
             // but I won't, in order to not risk my points ='(
-            if( ( (Book) inventory.getHead() ).getDescription().equals( text ) ) {
+            if( ( (Book) inventory.getHead() ).getDescription().toLowerCase().contains( text.toLowerCase() ) ) {
                 matchingItems.prepend( inventory.getHead() );
-            } else if( ( (BluRay) inventory.getHead() ).getDescription().equals( text ) ) {
+            } else if( ( (BluRay) inventory.getHead() ).getDescription().toLowerCase().equals( text.toLowerCase() ) ) {
                 matchingItems.prepend( inventory.getHead() );
             }
             tmpList.prepend( inventory.pop() );
