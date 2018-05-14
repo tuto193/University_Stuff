@@ -22,10 +22,9 @@ public class List {
     /**
      * A more verbose constructor
      */
-    public List( ListItem item ) {
-        this.head = item;
-        this.tail = item;
+    public List( LibraryItem item ) {
         if( item != null ) {
+            append(item);
             length++;
         }
     }
