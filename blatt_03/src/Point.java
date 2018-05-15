@@ -1,3 +1,5 @@
+import Geometry.Geometry;
+
 public class Point extends Geometry {
     private double[] coordinates;
     
