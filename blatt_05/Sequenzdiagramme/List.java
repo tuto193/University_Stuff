@@ -1,4 +1,4 @@
-package Aufgabe3;
+package Sequenzdiagramme;
 /**
  * A simple LinkedList, which delete functionalities of a Stack (Pop)
  * 

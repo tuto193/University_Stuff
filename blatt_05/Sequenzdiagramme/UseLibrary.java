@@ -1,4 +1,4 @@
-package library;
+package Sequenzdiagramme;
 
 import util.List;
 

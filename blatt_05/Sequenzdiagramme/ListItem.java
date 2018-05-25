@@ -1,4 +1,4 @@
-package Aufgabe3;
+package Sequenzdiagramme;
 /**
  * A simple class that represents all the items on our List
  * 

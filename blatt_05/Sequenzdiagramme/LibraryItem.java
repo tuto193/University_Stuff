@@ -1,4 +1,4 @@
-package library;
+package Sequenzdiagramme;
 
 /**
  * Class representing a lendable object in the library.
