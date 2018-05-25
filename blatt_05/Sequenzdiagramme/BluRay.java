@@ -1,51 +1,55 @@
-package Aufgabe3;
+package library;
+
 /**
- * A BluRay is defined by its title and its director
+ * Class representing a BluRay in a Library.
+ * 
+ * @author Mathias Menninghaus
  */
 public class BluRay extends LibraryItem {
-    /**
-     * The defining attributes of the BluRay
-     */
-    private String title;
-    private String director;
 
-    /**
-     * In the constructor one must state the title and the director of the BluRay
-     * is to be instantiated
-     * 
-     * @param title a String that represents the title of this BluRay
-     * @param director a String that represents the director of this BluRay
-     */
-    public BluRay( String title, String director ) {
-        this.title = title;
-        this.director = director;
-    }
+   /** The title of this BluRay */
+   private String title;
+   /** The name of the director of this BluRay */
+   private String director;
 
-    /**
-     * Returns the title String of this BluRay
-     * 
-     * @return title of this BluRay
-     */
-    public String getTitle() {
-        return this.title;
-    }
+   /**
+    * Constructor of a BluRay.
+    * 
+    * @param title
+    *           the titel of the BluRay
+    * @param director
+    *           name of the director
+    */
+   public BluRay(String title, String director) {
+      this.title = title;
+      this.director = director;
+   }
 
-    /**
-     * Returns the director String of this BluRay
-     * 
-     * @return director of this BluRay 
-     */
-    public String getDirector() {
-        return this.director;
-    }
+   /**
+    * Returns the title of the BluRay.
+    * 
+    * @return the title of the BluRay
+    */
+   public String getTitle() {
+      return this.title;
+   }
 
-    /**
-     * Returns a brief description String of this BluRay, based on its title
-     * and its director
-     * 
-     * @return a brief description of this BluRay
-     */
-    public String getDescription() {
-        return "The movie \"" + this.title + " \" was directed by: " + this.director + "\n My mom said it was O.K. .";
-    }
+   /**
+    * Returns the name of the director of the BluRay.
+    * 
+    * @return name of the director
+    */
+   public String getDirector() {
+      return this.director;
+   }
+
+   /**
+    * Short description of the BluRay.
+    * 
+    * @return the description of the BluRay
+    */
+   @Override
+   public String getDescription() {
+      return this.getTitle() + " " + this.getDirector();
+   }
 }

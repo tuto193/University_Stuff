@@ -1,52 +1,55 @@
-package Aufgabe3;
+package library;
+
 /**
- * Every instance of Book is represented through
- * its author and its title
+ * Class representing a book in the library.
  * 
- * @author Carlos A. Parra F.
+ * @author Mathias Menninghaus
  */
 public class Book extends LibraryItem {
-    /**
-     * The defining attributes of a Book
-     */
-    private String title;
-    private String author;
 
-    /**
-     * The Constructor sets the title and author attributes of the book
-     * 
-     * @param title a String that defines the books title
-     * @param author a String that defines the books author
-     */
-    public Book ( String title, String author ) {
-        this.title = title;
-        this.author = author;
-    }
+	/** The title of the book. */
+	private String title;
+	/** The name of the author of the Book. */
+	private String author;
 
-    /**
-     * Returns the title String of this book
-     * 
-     * @return the title of this book
-     */
-    public String getTile() {
-        return this.title;
-    }
+	/**
+	 * Constructor of a book.
+	 * 
+	 * @param title
+	 *            the titel of the book
+	 * @param author
+	 *            name of the author
+	 */
+	public Book(String title, String author) {
+		this.title = title;
+		this.author = author;
+	}
 
-    /**
-     * Return the author String of this book
-     * 
-     * @return the author of this book
-     */
-    public String getAuthor() {
-        return this.author;
-    }
+	/**
+	 * Returns the title of the book.
+	 * 
+	 * @return the title of the book
+	 */
+	public String getTitle() {
+		return title;
+	}
 
-    /**
-     * Returns a brief description of the book, using its title and author
-     * 
-     * @return a brief description of the book
-     */
-    public String getDescription() {
-        return "The Book \"" + this.title + "\" was written by: " + this.author + ". \n Pretty good :D. ";
-    }
+	/**
+	 * Returns the name of the author of the book.
+	 * 
+	 * @return name of the author
+	 */
+	public String getAuthor() {
+		return author;
+	}
+
+	/**
+	 * Short description of the book.
+	 * 
+	 * @return the description of the book
+	 */
+	@Override
+	public String getDescription() {
+		return this.getTitle() + " by " + this.getAuthor();
+	}
 }

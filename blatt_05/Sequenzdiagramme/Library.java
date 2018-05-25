@@ -1,104 +1,81 @@
-package Aufgabe3;
+package library;
+
+import util.List;
 
 /**
- * A class representing a simple library
- * @author Carlos A. Parra F.
+ * Class representing a library.
+ * 
+ * @author Mathias Menninghaus
+ * @see LibraryItem
  */
 public class Library {
 
-    private List inventory;
-    /**
-     * The Constructor, doesn't requiere much
-     */
-    public Library () {
-        this( null );
-    }
+   /** List of LibraryItem objects representing the inventory of this Library. */
+   List inventory;
 
-    /**
-     * The library can also be instantiated with an item already
-     */
-    public Library( LibraryItem item ) {
-        this.inventory = new List();
-        if( item != null ) {
-            this.inventory.append(item); 
-        }
-    }
+   /**
+    * Default constructor initializing the inventory of this Library.
+    */
+   public Library() {
+      inventory = new List();
+   }
 
-    /**
-     * Adds item to the myItems List of this Library
-     * 
-     * @param item a LibraryItem Object
-     */
-    public void addItem( LibraryItem item ) {
-        this.inventory.append(item);
-    }
+   /**
+    * Adds a LibraryItem into the Library.
+    * 
+    * @param item
+    *           the LibraryItem to be added
+    */
+   public void addItem(LibraryItem item) {
+      inventory.add(item);
+   }
 
-    /**
-     * Deletes the given item from the Library's inventory
-     */
-    public void deleteItem( LibraryItem item ) {
-        // if the Library's inventory is empty, you might as well not check it
-        if( !inventory.isEmpty() ){
-            // a temporary list and a list of items that match the description given
-            List tmpList = new List(null);
+   /**
+    * Deletes a LibraryItem from this library.
+    * 
+    * @param item
+    *           The item that has to be deleted
+    */
+   public void deleteItem(LibraryItem item) {
+      inventory.reset();
+      int i = 0;
+      while (!inventory.endpos()) {
+         LibraryItem next = (LibraryItem) inventory.elem();
 
-            // We want our loop limit to be a static number that won't be accidentally changed in the loop
-            int loopLimit = inventory.getLength();
+         if (next.equals(item)) {
+            inventory.delete();
+         } else {
+            inventory.advance();
+         }
 
-            // Check all the items inside the inventory, matching items will be terminated
-            // matchingItems
-            for( int i = 0; i < loopLimit; i++ ) {
-                if( inventory.getHead().equals(item) ) {
-                    inventory.pop();
-                } else {
-                    // We need to empty our inventory into the temporaryList in order to advance
-                    tmpList.prepend( inventory.pop() );
-                }
-            }        
-            // Make sure that our inventory is just as it was before
-            this.inventory = tmpList;
-        }
-    }
+      }
+   }
 
-    /**
-     * Returns a List of items, whose description
-     * matches the given text. (IT DOES NOT CHECK WHETHER THE ITEM IS AVAILABLE)
-     * 
-     * @param text a String against which the List of items
-     *             of this library will be searched.
-     * @return matchingItems a List of items, that match
-     *          the description given on text.
-     */
-    public List search( String text ) {
-        // if the Library's inventory is empty, you might as well not check it
-        if( this.inventory.isEmpty() ) {
-            return null;
-        }
-        // a temporary list and a list of items that match the description given
-        List tmpList = new List(null);
-        List matchingItems = new List( null);
+   /**
+    * Search for a library item which description contains the given string.
+    * 
+    * @param text
+    *           string to find
+    * @return a list of library items which descriptions contain the given
+    *         string
+    */
+   public List search(String text) {
+      List lstResult = new List();
 
-        // We want our loop limit to be a static number that won't be accidentally changed in the loop
-        int loopLimit = inventory.getLength();
+      inventory.reset();
 
-        // Check all the items inside the inventory, matching items will be copied over to the
-        // matchingItems
-        for( int i = 0; i < loopLimit; i++ ) {
-            // I could change it to look better directly from the abstract
-            // class itself, and check for directors and all that...
-            // but I won't, in order to not risk my points ='(
-            LibraryItem onTop = inventory.getHead();
-            if( onTop.getClass() == Book.class && ((Book) onTop).getDescription().toLowerCase().contains( text.toLowerCase() ) ) {
-                matchingItems.prepend( inventory.getHead() );
-            } else if( onTop.getClass() == BluRay.class && ((BluRay) onTop).getDescription().toLowerCase().equals( text.toLowerCase() ) ) {
-                matchingItems.prepend( inventory.getHead() );
-            }
-            // We need to empty our inventory into the temporaryList in order to advance
-            tmpList.prepend( inventory.pop() );
-        }        
-        // Make sure that our inventory is just as it was before
-        this.inventory = tmpList;
+      while (!inventory.endpos()) {
+         LibraryItem next = (LibraryItem) inventory.elem();
 
-        return matchingItems;
-    }
+         String description = next.getDescription();
+         if (description.contains(text)) {
+            lstResult.add(next);
+         }
+         inventory.advance();
+      }
+
+      lstResult.reset();
+
+      return lstResult;
+   }
 }
