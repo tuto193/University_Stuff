@@ -20,4 +20,6 @@ public class Point extends Geometry {
     public double volume() {
         return 0;
     }
+
+    public Geometry encapsulate(Geometry one){ return null; }
 }
