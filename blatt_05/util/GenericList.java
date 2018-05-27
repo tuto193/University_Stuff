@@ -111,4 +111,23 @@ public class GenericList<T> implements Cloneable{
       }
       pos.next = pos.next.next;
    }
+
+   // LETS IMPLEMENT CLONEABLE ////////////////////////////////////////
+   // We are not going to be convenrtional
+   /**
+    * Returns a clone of this GenericList, where all entries (BUT NOT THE OBJECTS
+    POINTED AT BY THEM) are also Objects that don't refere to
+    */
+   public Object clone() {
+        GenericList<T> theClone = new GenericList<T> (); 
+
+        this.reset();
+        while( !this.endpos() ) {
+            GenericEntry<T> zombie = new GenericEntry<T>( this.elem() );
+            theClone.add( zombie );
+            this.advance();
+        }
+
+        return theCLone;
+   }
 }

@@ -4,7 +4,7 @@ package util;
  * An Entry holds an Object <code>o</code> and a reference <code>next</code> to
  * the next Entry such that a linked List of Entry elements is generated.
  * 
- * @author Mathias Menninghaus (mathias.menninghaus@uos.de)
+ * @author Carlos A. Parra F.... totally
  */
 class GenericEntry<T> {
 
