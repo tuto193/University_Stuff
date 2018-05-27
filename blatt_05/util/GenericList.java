@@ -10,7 +10,7 @@ package util;
  * @author Carlos A. Parra F. Totally
  * 
  */
-public class GenricList<T> implements Cloneable{
+public class GenericList<T> implements Cloneable{
 
    /**
     * Reference on the first Entry of this List
