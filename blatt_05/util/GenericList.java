@@ -116,7 +116,9 @@ public class GenericList<T> implements Cloneable{
    // We are not going to be convenrtional
    /**
     * Returns a clone of this GenericList, where all entries (BUT NOT THE OBJECTS
-    POINTED AT BY THEM) are also Objects that don't refere to
+    POINTED AT BY THEM) are also Objects that don't refere to the ones they are taking from.
+
+    @return a Copy (clone) of this Object.
     */
    public Object clone() {
         GenericList<T> theClone = new GenericList<T> (); 
