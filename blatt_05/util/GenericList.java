@@ -124,10 +124,10 @@ public class GenericList<T> implements Cloneable{
         this.reset();
         while( !this.endpos() ) {
             GenericEntry<T> zombie = new GenericEntry<T>( this.elem() );
-            theClone.add( zombie );
+            theClone.add( zombie.o );
             this.advance();
         }
 
-        return theCLone;
+        return theClone;
    }
 }
