@@ -120,7 +120,7 @@ public class GenericList<T> implements Cloneable{
 
     @return a Copy (clone) of this Object.
     */
-   public Object clone() {
+   public GenericList<T> clone() {
         GenericList<T> theClone = new GenericList<T> (); 
 
         this.reset();
