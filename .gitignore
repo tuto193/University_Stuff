@@ -6,6 +6,9 @@
 # IDE config files
 *.idea
 *.iml
+
+# Useless recommender things from eclipse
+.recommenders/*
 /bin/
 /*/.gitignore
 
