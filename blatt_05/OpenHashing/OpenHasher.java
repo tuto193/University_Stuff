@@ -68,7 +68,6 @@ public class OpenHasher implements HashSet {
                 hashList[index].advance();
             }
         }
-        hashList[index].reset();
 		return false;
 	}
 	
