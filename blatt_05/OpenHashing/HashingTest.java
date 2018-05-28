@@ -1,5 +1,7 @@
 package OpenHashing;
 
+import java.util.concurrent.TimeUnit;
+
 import OpenHashing.OpenHasher;
 /**
  * A simple set of tests for the OpenHasher class.
@@ -10,17 +12,27 @@ public class HashingTest {
 
     /**
      * Checks a test's results against its expected outcome., and provides an output
-     * accordingly. Throws a RuntimeException should the tests fail.
+     * accordingly. 
      * 
      * @param testName a String describing the name of the test, for easy tracking
      * @param expectedOutcome the expected outcome of the test
      * @param actualOutcome the actual outcome of the test.
-     * @throws RuntimeException if the outcomes don't match
      */
     public static void testMethod( String testName, boolean expectedOutcome, boolean actualOutcome ) {
+        System.out.print("Test " + testName + " is being run" );
+        for( int i = 0; i < 3; i++ ) {
+            try{
+                Thread.sleep(100);
+            } catch(InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+            System.out.print(".");
+        }
+        System.out.print("And it...");
         if( expectedOutcome != actualOutcome ) {
-            throw new RuntimeException("The test " +
-            testName + " failed.");
+            System.out.println("failed.");
+        } else {
+            System.out.println("passed.");
         }
     }
 
@@ -40,6 +52,7 @@ public class HashingTest {
         boolean TEST1 = testSubject.insert(testObjects);    // true because first
         boolean TEST2 = testSubject.insert(test1);          // true...
         boolean TEST3 = testSubject.insert(test2);          // false
+        boolean TEST4 = testSubject.insert(test3);
         boolean TEST5 = testSubject.insert(test4);          // false
         boolean TEST6 = testSubject.insert(test5);          // true
 
@@ -62,7 +75,7 @@ public class HashingTest {
         testMethod("TEST2", true, TEST2);
         testMethod("TEST3", false, TEST3);
         testMethod("TEST4", false, TEST4);
-        testMethod("TEST5", true, TEST5);
+        testMethod("TEST5", false, TEST5);
         testMethod("TEST6", true, TEST6);
 
         testMethod("containTest1", TEST1, containTest1);
