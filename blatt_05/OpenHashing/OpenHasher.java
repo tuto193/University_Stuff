@@ -31,9 +31,17 @@ public class OpenHasher implements HashSet {
         }
     }
 
+    private int defIndex( Object o ) {
+        int index = o.hashCode() % magicNumber;
+        if( index < 0 ) {
+            return - index;
+        }
+        return index;
+    }
+
 	@Override
 	public boolean contains(Object o) {
-        int index = o.hashCode() % magicNumber;
+        int index = defIndex(o);
         while( !hashList[index].endpos() ) {
             if( hashList[index].elem().equals(o) ) {
                 hashList[index].reset();
@@ -47,7 +55,7 @@ public class OpenHasher implements HashSet {
 
 	@Override
 	public boolean insert(Object o) {
-        int index = o.hashCode() % magicNumber;
+        int index = defIndex(o);
         if( !this.contains(o) ) {
             hashList[index].add( o );
             return true;
@@ -57,7 +65,7 @@ public class OpenHasher implements HashSet {
 
 	@Override
 	public boolean delete(Object o) {
-        int index = o.hashCode() % magicNumber;
+        int index = defIndex(o);
         if( this.contains( o ) ) {
             while( !hashList[index].endpos() ) {
                 if( hashList[index].elem().equals( 0 ) ) {
@@ -69,6 +77,5 @@ public class OpenHasher implements HashSet {
             }
         }
 		return false;
-	}
-	
+    }
 }
