@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class UncertainException {
 
    private int i = 0;
@@ -77,7 +79,6 @@ public class UncertainException {
             throw new RuntimeException();
          }
       }
-      return i++;
    }
 
    public int uncertain3() {
@@ -152,7 +153,7 @@ public class UncertainException {
       }
    }
 
-   public int uncertain10() {
+   public int uncertain10() throws IOException {
       try {
          throw new java.io.IOException();
       } catch (RuntimeException e) {
