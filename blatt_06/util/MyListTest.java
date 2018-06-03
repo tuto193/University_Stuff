@@ -6,30 +6,36 @@ import java.util.NoSuchElementException;
 
 public class MyListTest {
 
+    public static void test( int num ) {
+        System.out.println("Test " + num );
+    }
+
    public static void main(String[] args) {
         MyList<String> mine = new MyList<String>();
         // Check that hasNext works on an empty collection
+        test(1);
         Assert.assertFalse( mine.iterator().hasNext() );
         // Check that the right exception is thrown
+        test(2);
         try{
             mine.iterator().next();
         } catch( NoSuchElementException e ) {
             Assert.assertTrue(true);
         }
 
+        test(3);
         mine.add( "a" );
         // Check that we have our one item
         Assert.assertTrue(mine.iterator().hasNext());
 
-        // Check the item, and that it IS the item we know is there
-        Assert.assertTrue(mine.iterator().next().equals("a"));
-
         // Then DELETE the item and check that it is empty afterwards
+        test(4);
         mine.iterator().remove();
 
         Assert.assertFalse(mine.iterator().hasNext());
 
         // Try deleting from the now empty list
+        test(5);
         try{
             mine.iterator().remove();
         } catch( NoSuchElementException e ) {
@@ -53,6 +59,7 @@ public class MyListTest {
         }
         
         // This should now be an empty list
+        test(6);
         Assert.assertFalse(mine.iterator().hasNext());
    }
 }

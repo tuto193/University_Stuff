@@ -22,7 +22,7 @@ public class MyIterator<E> implements Iterator {
 
     @Override
     public boolean hasNext() {
-        return this.curr != null;
+        return this.curr != null && this.curr.o != null;
     }
 
     @Override
@@ -52,7 +52,9 @@ public class MyIterator<E> implements Iterator {
         if( !hasNext() ) {
             throw new NoSuchElementException();
         }
-        this.prev.next = this.curr.next;
+        if( prev != null ) {
+            this.prev.next = this.curr.next;
+        }
         this.curr = this.curr.next;
     }
 }
