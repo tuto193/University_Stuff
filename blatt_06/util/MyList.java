@@ -1,5 +1,6 @@
 package util;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
@@ -11,7 +12,7 @@ import java.util.NoSuchElementException;
  * @author Mathias Menninghaus (mathias.menninghaus@uos.de)
  * 
  */
-public class MyList<E> implements Cloneable {
+public class MyList<E> implements Cloneable, Iterable {
 
    /**
     * Reference on the first Entry of this List
@@ -155,6 +156,13 @@ public class MyList<E> implements Cloneable {
       if (!begin.equals(other.begin))
          return false;
       return true;
+   }
+
+   ////// ITERATOR CODE /////////////////
+   @Override
+   public Iterator iterator() {
+       this.reset();
+       return new MyIterator( this.pos, this);
    }
 
 }
