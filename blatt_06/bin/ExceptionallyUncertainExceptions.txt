@@ -1,0 +1,61 @@
+uncertain2 -- erster Fehler: weil, die for-Schleife (für den Compiler) nie endet, und deswegen könnte auf "return i++" nie zugegriffen werden.
+
+uncertain10 -- erster Fehler: IOException ist eine checked exception. Es muss deklariert werden
+
+1.  Exception thrown
+    Exception caught
+    i = 1
+    finally
+    i = 2
+    NumberFormatException
+    uncertain1 hat kein return
+2.  Enter loop
+    try break,
+    skip catch
+    finally
+    i = 1
+    RuntimeException
+    uncertain2 hat kein return
+3.  enter do
+    try: throw exception
+    catch exception
+    i = 1
+    finally
+    i = 2
+    exit loop
+    return i (2)... i then = 3
+4.  try:
+    return i (0), then i = 1
+    skip catch
+    finally
+    i = 2
+    (code outside is then not run, because already returned something)
+5.  try
+    return i (0)
+    finally
+    RuntimeException
+6.  try...
+    finally
+    return i (1)
+7.  try IOException
+    not catch, because checked exception
+    return i(0), then i = 1
+8.  try
+    throw NumberFormatException (extends somewhere
+    from RuntimeException)
+    catch it
+    i = 1
+    throw RuntimeException
+    finally
+    i = 2
+9.  try
+    throw ClassCastException (extends from RuntimeException)
+    catch
+    i = 1
+    finally
+    return 1, then i = 2
+10. try
+    IOException thrown
+    not catch
+    not run code outside of block
+    i = 0
