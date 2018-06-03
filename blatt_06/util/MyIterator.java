@@ -48,7 +48,7 @@ public class MyIterator<E> implements Iterator {
      * @throws NoSuchElementException if there is no element to be deleted
      */
     @Override
-    public E remove() {
+    public void remove() {
         if( !hasNext() ) {
             throw new NoSuchElementException();
         }
@@ -56,6 +56,5 @@ public class MyIterator<E> implements Iterator {
         E o = this.curr.o;
         this.prev.next = this.curr.next;
         this.curr = this.curr.next;
-        return o;
     }
 }
