@@ -9,12 +9,12 @@ import java.util.NoSuchElementException;
  * 
  * @author Carlos A. Parra F.
  */
-public class MyIterator implements Iterator {
+public class MyIterator<E> implements Iterator {
     private MyEntry<E> prev;
     private MyEntry<E> curr;
     private MyList<E> list;
 
-    public MyIterator( MyEntry<E> first, MyEntry<E> second, MyList<E> list ) {
+    public MyIterator( MyEntry<E> first, MyList<E> list ) {
         this.list = list;
         this.prev = null;
         this.curr = first;
@@ -47,7 +47,8 @@ public class MyIterator implements Iterator {
      * @return o Object pointed at by the Entry withing the list
      * @throws NoSuchElementException if there is no element to be deleted
      */
-    public E delete() {
+    @Override
+    public E remove() {
         if( !hasNext() ) {
             throw new NoSuchElementException();
         }

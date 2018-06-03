@@ -162,8 +162,7 @@ public class MyList<E> implements Cloneable, Iterable {
    @Override
    public Iterator iterator() {
        this.reset();
-       this.advance();
-       return new MyIterator( this.first, this.pos, this);
+       return new MyIterator( this.pos, this);
    }
 
 }
