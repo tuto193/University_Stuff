@@ -52,8 +52,6 @@ public class MyIterator<E> implements Iterator {
         if( !hasNext() ) {
             throw new NoSuchElementException();
         }
-        // the object to the taken out
-        E o = this.curr.o;
         this.prev.next = this.curr.next;
         this.curr = this.curr.next;
     }
