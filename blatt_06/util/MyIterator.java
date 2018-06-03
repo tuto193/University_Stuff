@@ -3,6 +3,12 @@ package util;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Just a simple ListIterator with the added
+ * capability of deleting entries of said list
+ * 
+ * @author Carlos A. Parra F.
+ */
 public class MyIterator implements Iterator {
     private MyEntry<E> prev;
     private MyEntry<E> curr;
