@@ -8,9 +8,10 @@ public class MyIterator implements Iterator {
     private MyEntry<E> next;
     private MyList<E> list;
 
-    public MyIterator( MyEntry<E> first, MyList<E> list ) {
+    public MyIterator( MyEntry<E> first, MyEntry<E> second, MyList<E> list ) {
+        this.list = list;
         this.prev = null;
         this.curr = first;
-        this.next = 
+        this.next = second;
     }
 }
