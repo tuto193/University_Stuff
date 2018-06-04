@@ -56,9 +56,9 @@ public class Fraction extends Number {
    private static HashSet<Fraction> set;
    
    /*
-    * Klasse die überprüft, ob der Bruch schon in der Hashset ist
-    * Ist der Bruch schon in der Liste, gibt er die alte Referenz zurück
-    * sonst fügt er diese zur Liste hinzu und gibt die neue Referenz zurück
+    * Klasse die Ã¼berprueft, ob der Bruch schon in der Hashset ist
+    * Ist der Bruch schon in der Liste, gibt er die alte Referenz zurueck
+    * sonst fÃ¼gt er diese zur Liste hinzu und gibt die neue Referenz zurueck
     */
    
    public static Fraction check(Fraction frac) {
@@ -124,7 +124,7 @@ public class Fraction extends Number {
    }
 
    /*
-    * haben check hinzugefügt, um die Referenz nicht neu zu erstellen bei new Fraction
+    * haben check hinzugefÃ¼gt, um die Referenz nicht neu zu erstellen bei new Fraction
     */
    
    public static Fraction newFraction(int numerator, int denominator) {
