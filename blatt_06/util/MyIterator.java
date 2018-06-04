@@ -27,7 +27,6 @@ public class MyIterator<E> implements Iterator {
 
     @Override
     public E next() {
-        // Show error if the List had changed
         // And another error if there is no such next element
         if( !hasNext() ) {
             throw new NoSuchElementException();
