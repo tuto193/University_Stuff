@@ -22,7 +22,7 @@ public class MyIterator<E> implements Iterator {
 
     @Override
     public boolean hasNext() {
-        return this.curr != null && this.curr.o != null;
+        return this.curr.next != null;
     }
 
     @Override
@@ -31,7 +31,7 @@ public class MyIterator<E> implements Iterator {
         if( !hasNext() ) {
             throw new NoSuchElementException();
         }
-        E o = this.curr.o; // the next element
+        E o = this.curr.next.o; // the next element
         // Move our triad further
         this.prev = this.curr;
         this.curr = this.curr.next;
@@ -51,7 +51,7 @@ public class MyIterator<E> implements Iterator {
         if( !hasNext() ) {
             throw new NoSuchElementException();
         }
-        if( prev != null ) {
+        if( this.prev != null ) {
             this.prev.next = this.curr.next;
         }
         this.curr = this.curr.next;
