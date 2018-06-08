@@ -5,12 +5,25 @@ import java.util.Random;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+/**
+ * A simple Test of some of the JavaCollections
+ * 
+ * @author Carlos A. Parra F.
+ */
 public class CollectionTest {
-    // With how many objects do we want to test
+    /**
+     * Global variables, to adjust to our testing needs
+     */
     static int objectNumber = 1000;
     static int emptyTests = 10;
     static int cellWidth = 14;
 
+    /**
+     * Draws the top row of a simple table
+     * 
+     * @param rowName the name of the row (or title)
+     * @param results a list of Strings, containing all results to be displayed in the cells
+     */
     public static void makeTopRow( String rowName, String[] results ) {
         // Draw the top
         for( int i = 0; i < 4; i++ ) {
@@ -24,6 +37,13 @@ public class CollectionTest {
         }
         makeRow(rowName, results);
     }
+
+    /**
+     * Draws middle and bottom rows of a simple table
+     * 
+     * @param rowName the name of the row (or title)
+     * @param results a list of Strings containing all results to be displayed in the cells
+     */
     public static void makeRow( String rowName, String[] results ) {
         
         // Draw the middle part
@@ -61,11 +81,25 @@ public class CollectionTest {
         }
     }
 
+    /**
+     * A Small (basically useless) print Function, that prints a small description of our test
+     */
     public static void printTest( String description ) {
         System.out.println( "We are showing now the " + description );
     }
     
+    /**
+     * Returns a String of values (separated with a comma), with the min, average and max values based on an array of values
+     * 
+     * @param array an array of longs, containing the elements that will be checked
+     * @param range the range we want to check the array within a particular range
+     * @return string of values with the resulting velues
+     * @throws RunTimeException if range is longer than the array's length
+     */
     public static String testAverages( long[] array, int range ) {
+        if( range > array.length ) {
+            throw new RuntimeException("The range cannot be longer than the array's length" );
+        }
         long max = array[0], min = array[0], average = 0;
 
         for( int i = 0; i < range; i++ ) {
@@ -82,6 +116,11 @@ public class CollectionTest {
         return "" + min + "," + average + "," + max;
     }
 
+    /**
+     * A Sequence of tests made on the LinkedList collection
+     * 
+     * @param seeValues if true, it will also show all the individual values from the tests made
+     */
     public static void nanoTestList( boolean seeValues ) {
         printTest( "Tests for LinkedList" );
         LinkedList<String> testList = new LinkedList<String>();
@@ -167,7 +206,11 @@ public class CollectionTest {
             }
         }
     }
-
+     /**
+     * A Sequence of tests made on the ArrayList collection
+     * 
+     * @param seeValues if true, it will also show all the individual values from the tests made
+     */
     public static void nanoTestArray( boolean seeValues ) {
         printTest( "Tests for ArrayList" );
         ArrayList<String> testList = new ArrayList<String>();
@@ -254,7 +297,11 @@ public class CollectionTest {
         }
     
     }
-    
+     /**
+     * A Sequence of tests made on the HashSet collection
+     * 
+     * @param seeValues if true, it will also show all the individual values from the tests made
+     */
     public static void nanoTestHashSet( boolean seeValues ) {
         printTest( "Tests for HashSet" );
         HashSet<String> testList = new HashSet<String>();

@@ -1,5 +1,6 @@
 package Aufgabe2;
 
+import util.*;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -11,7 +12,7 @@ import java.util.NoSuchElementException;
  *
  * @author Mathias Menninghaus (mathias.menninghaus@uos.de)
  */
-public class MyList<E> implements Cloneable, Iterable<E> {
+public class MyList<E> implements Cloneable, Iterable<E>, Visitable {
 
    /**
     * Reference on the first Entry of this List
