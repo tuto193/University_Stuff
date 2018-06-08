@@ -290,7 +290,7 @@ public class CollectionTest {
     }
 
     public static void main( String[] args ) {
-        boolean wantToSee = true;
+        boolean wantToSee = false;
         nanoTestArray( wantToSee );
         nanoTestList( wantToSee );
         nanoTestHashSet( wantToSee );
