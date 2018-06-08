@@ -161,7 +161,7 @@ public class MyList<E> implements Cloneable, Iterable {
    ////// ITERATOR CODE /////////////////
    @Override
    public Iterator iterator() {
-       return new MyIterator<E>( this.begin.next, this);
+       return new MyIterator<E>( this.begin, this);
    }
 
 }
