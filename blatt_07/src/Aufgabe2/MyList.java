@@ -188,7 +188,7 @@ public class MyList<E> implements Cloneable, Iterable<E>, Visitable<E> {
 
     @Override
     public void accept(Visitor<E> v) {
-        MyEntry<E> currentEntry = this.begin;
+        MyEntry<E> currentEntry = this.begin.next;
         while( currentEntry != null && v.visit(currentEntry.o) ) {
             currentEntry = currentEntry.next;
         }
