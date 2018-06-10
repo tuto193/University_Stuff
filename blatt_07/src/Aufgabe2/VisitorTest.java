@@ -13,14 +13,24 @@ public class VisitorTest {
         }
     }
 
+    public static void printList( MyList list ) {
+        while( !list.endpos() ) {
+            System.out.println( list.elem() );
+            list.advance();
+        }
+        list.reset();
+    }
+
     public static void main( String[] args ) {
         MyList<String> testList = new MyList<String>();
         fillList(testList);
 
+        printList( testList );
+
         Visitor<String> v = new Visitor<String>(){
             @Override
             public boolean visit( String o ) {
-                o += " you have been visited :D";
+                System.out.println( "Visited " + o );
                 return true;
             }
         };
