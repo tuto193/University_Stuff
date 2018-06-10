@@ -4,7 +4,7 @@ import util.*;
 
 public class VisitorTest {
 
-    final static int objects = 100;
+    final static int objects = 10;
 
     public static void fillList( MyList<String> c ) {
         for( int i = 0; i < objects; i++ ) {
