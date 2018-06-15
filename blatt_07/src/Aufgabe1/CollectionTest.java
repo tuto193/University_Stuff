@@ -15,7 +15,7 @@ public class CollectionTest {
     /**
      * Global variables, to adjust to our testing needs
      */
-    static int objectNumber = 1000;
+    static int objectNumber = 10000;
     static int emptyTests = 10;
     static int cellWidth = 14;
     static boolean seeValues = false;

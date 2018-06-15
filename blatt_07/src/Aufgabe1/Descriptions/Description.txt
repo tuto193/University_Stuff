@@ -1,0 +1,8 @@
+Carlos A. Parra F. & Fabian Pohl
+
+HashSet: contains und remove sind hier durchschnittlich am besten, weil
+Elemente gut in die Buckets verteilt werden. Das verbessert Laufzeiten von Suchen.
+
+LinkedList: add ist ähnlich wie bei ArrayList, denn sie implementieren es beide fast gleich, außer wenn ArrayList ihre Capacity erhöhen muss. Doch LinkedList wird schlechter, je mehr Elemente es gibt.
+
+ArrayList: contains ist etwas besser hier als bei LinkedList, da die Suche nach/mit Index viel schneller ist, als bei den Iteratoren von LinkedList.
