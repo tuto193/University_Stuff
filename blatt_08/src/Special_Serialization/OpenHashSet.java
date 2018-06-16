@@ -1,10 +1,12 @@
 package Special_Serialization;
 
+import java.io.Serializable;
+
 /**
  * Implementation of an open hash set: one bucket holds all entries with the
  * same {@link Object#hashCode()}.
  */
-public class OpenHashSet<T> implements HashSet<T> {
+public class OpenHashSet<T> implements HashSet<T>, Serializable {
 
    private MyList<T>[] buckets;
    private DefaultHashFunction<? super T> hashFunction;
