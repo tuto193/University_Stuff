@@ -8,7 +8,11 @@ import java.io.Serializable;
  */
 public class OpenHashSet<T> implements HashSet<T>, Serializable {
 
-   private MyList<T>[] buckets;
+   /**	
+	 * An auto-generated SerialVersion
+	 */
+	private static final long serialVersionUID = -4431830653862243945L;
+private MyList<T>[] buckets;
    private DefaultHashFunction<? super T> hashFunction;
 
    /**
@@ -91,4 +95,16 @@ public class OpenHashSet<T> implements HashSet<T>, Serializable {
          return hashFunction.equals(o1, o2);
       }
    }
+
+   /*********************************************
+    * Special Serialization
+    */
+    public boolean testEmpty() {
+        if( buckets[0] == null ) {
+            return true;
+        } else if( buckets[0].elem() == null ) {
+            return true;   
+        }
+        return false;
+    }
 }
