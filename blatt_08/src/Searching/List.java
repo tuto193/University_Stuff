@@ -19,7 +19,7 @@ public class List {
       boolean argumentsRead = false;
 
       int i = 0;
-      String pattern = ".";
+      String pattern = ".*";
       while (!argumentsRead && i < args.length) {
 
          /*
@@ -106,7 +106,8 @@ public class List {
 
       @Override
       public FileVisitResult preVisitDirectory(File dir) {
-         System.out.println(indent + dir.getName());
+        // This line right underneath musst be commented out on the final version
+         //System.out.println(indent + dir.getName());
 
          if (recursive || this.root.equals(dir)) {
             indent.append( dir.getName() + "/" );
