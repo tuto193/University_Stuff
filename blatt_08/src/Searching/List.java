@@ -93,16 +93,23 @@ public class List {
 
       @Override
       public FileVisitResult postVisitDirectory(File dir) {
-         indent = indent.delete(indent.length() - 2, indent.length());
+    	  // Make sure that we delete the directory end and carry on with the rest
+    	  String[] toSplit = indent.toString().split("/");
+    	  String newIndent = "";
+    	  for( int i = 0; i < toSplit.length - 1; i++ ) {
+    		  newIndent += toSplit[i] + "/";
+    	  }
+    	  indent = indent.delete(0, indent.length() );
+         indent.append(newIndent);
          return FileVisitResult.CONTINUE;
       }
 
       @Override
       public FileVisitResult preVisitDirectory(File dir) {
-         System.out.println(indent + "+ " + dir.getName());
+         System.out.println(indent + dir.getName());
 
          if (recursive || this.root.equals(dir)) {
-            indent.append("| ");
+            indent.append( dir.getName() + "/" );
             return FileVisitResult.CONTINUE;
          } else {
             return FileVisitResult.SKIP_SUBTREE;
@@ -121,7 +128,7 @@ public class List {
 
         // Only files that actually match the regex will be seen
          MATCHER = PATTERN.matcher( file.getName() );
-         if( MATCHER.matches() ) {
+         if( MATCHER.find() ) {
 
           System.out.print(indent);
 
