@@ -44,7 +44,7 @@ public class OpenHashSet<T> implements HashSet<T>, Serializable {
    public OpenHashSet(int size, HashFunction<? super T> hashFunction) {
       this.buckets = new MyList[size];
       for( int i = 0; i < size; i++ ) {
-          this.buckets[i] = null;
+          this.buckets[i] = new MyList<T>();
       }
       this.hashFunction = hashFunction;
    }

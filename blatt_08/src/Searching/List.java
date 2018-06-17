@@ -19,7 +19,7 @@ public class List {
       boolean argumentsRead = false;
 
       int i = 0;
-      Pattern pattern = Pattern.compile(".");
+      String pattern = ".";
       while (!argumentsRead && i < args.length) {
 
          /*
@@ -38,7 +38,7 @@ public class List {
                 throw new RuntimeException( "No pattern given. A pattern musst be"
                 		+ "specified after [-p]" );
               }             
-              pattern = Pattern.compile(args[i+1]);
+              pattern = args[i+1];
               i += 2;
               break;
             default:
@@ -82,13 +82,13 @@ public class List {
       private Matcher MATCHER;
 
       private DoList(File root, boolean recursive) {
-        this( root, recursive, Pattern.compile(".") );
+        this( root, recursive, "." );
       }
 
-      private DoList( File root, boolean recursive, Pattern pattern ) {
+      private DoList( File root, boolean recursive, String pattern ) {
         this.recursive = recursive;
         this.root = root;
-        this.PATTERN = pattern;
+        this.PATTERN = Pattern.compile(pattern);
       }
 
       @Override
@@ -99,10 +99,7 @@ public class List {
 
       @Override
       public FileVisitResult preVisitDirectory(File dir) {
-    	  MATCHER = PATTERN.matcher( dir.getName() );
-        if( MATCHER.matches() && dir.isFile() ) {
-          System.out.println(indent + "+ " + dir.getName());
-        }
+         System.out.println(indent + "+ " + dir.getName());
 
          if (recursive || this.root.equals(dir)) {
             indent.append("| ");
@@ -122,9 +119,14 @@ public class List {
       @Override
       public FileVisitResult visitFile(File file) {
 
-         System.out.print(indent);
+        // Only files that actually match the regex will be seen
+         MATCHER = PATTERN.matcher( file.getName() );
+         if( MATCHER.matches() ) {
 
-         System.out.println(file.getName());
+          System.out.print(indent);
+
+          System.out.println(file.getName());
+         }
 
          return FileVisitResult.CONTINUE;
       }
