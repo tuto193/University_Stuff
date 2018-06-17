@@ -1,5 +1,8 @@
 package Special_Serialization;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /**
@@ -12,7 +15,7 @@ public class OpenHashSet<T> implements HashSet<T>, Serializable {
 	 * An auto-generated SerialVersion
 	 */
    	private static final long serialVersionUID = -4431830653862243945L;
-    private MyList<T>[] buckets;
+    private transient MyList<T>[] buckets;
     private DefaultHashFunction<? super T> hashFunction;
 
    /**
@@ -145,5 +148,55 @@ public class OpenHashSet<T> implements HashSet<T>, Serializable {
             this.buckets[index] = new MyList<T>();
         }
         return this.buckets[index];
+    }
+
+    /**
+     * Writes a single list with all the objects contained within the buckets
+     * 
+     * @param oout
+     *            the object that will be written out, containing all of the objects inside the list
+     * @throws IOException
+     *            if it encounters an IOException 
+     */
+    private void writeObject( ObjectOutputStream oout ) throws IOException {
+        MyList<T> toWrite = new MyList<T>();
+        int size = 0;
+        for( int i = 0; i < buckets.length; i++ ) {
+            if( buckets[i] != null ) {
+                buckets[i].reset();
+                while( !buckets[i].endpos() && buckets[i].elem() != null ) {
+                    size++;
+                    toWrite.add( buckets[i].elem() );
+                }
+            }
+        } 
+
+        oout.writeInt(size);
+        toWrite.reset();
+        while( !toWrite.endpos() ) {
+            oout.writeObject( toWrite.elem() );
+            toWrite.advance();
+        }
+    }
+
+    /**
+     * The List that was saved is then deserialized, 
+     * and all the objects that were there are all
+     * added back into the buckets (but not in the same
+     * order...)
+     * 
+     * @param oin
+     *          the input stream that is being read into
+     * @throws IOException
+     *          if it happens to encounter an IOException
+     * @throws ClassNotFoundException
+     *          if it encoutners a ClassNotFoundExcpetion
+     */
+    private void readObject( ObjectInputStream oin ) throws IOException, ClassNotFoundException  {
+        int size = oin.readInt();
+
+        for( int i = 0; i < size; i++ ) {
+            this.insert( (T) oin.readObject() );
+        } 
     }
 }
