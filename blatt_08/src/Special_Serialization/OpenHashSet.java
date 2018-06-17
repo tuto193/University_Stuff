@@ -116,7 +116,7 @@ public class OpenHashSet<T> implements HashSet<T>, Serializable {
    /********************************************
     *       Special Serialization              *
     ********************************************/
-    public boolean testEmpty() {
+   /*  public boolean testEmpty() {
         for( int i = 0; i < buckets.length; i++ ) {
             if( buckets[i] == null ) {
                 return true;
@@ -126,7 +126,7 @@ public class OpenHashSet<T> implements HashSet<T>, Serializable {
         }
         
         return false;
-    }
+    } */
 
     /**
      * Returns the instance of MyList at the given index.

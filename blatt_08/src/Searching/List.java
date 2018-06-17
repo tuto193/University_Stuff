@@ -1,6 +1,7 @@
 package Searching;
 
 import java.io.File;
+import java.util.regex.*;
 
 /**
  * @author Mathias Menninghaus (mathias.mennighaus@uos.de)... modified by Carlos A. Parra
@@ -18,7 +19,7 @@ public class List {
       boolean argumentsRead = false;
 
       int i = 0;
-      String pattern = ".";
+      Pattern pattern = Pattern.compile(".");
       while (!argumentsRead && i < args.length) {
 
          /*
@@ -31,12 +32,14 @@ public class List {
                break;
             
             case "-p":
-              // Should the arguments not sufice the
+              // Should the arguments not suffice the
               // functions of the program
-              if( i + 2 > args.length ) {
-                throw new RuntimeException( "The amount of arguments given, doesn't match" );
+              if( i + 1 > args.length ) {
+                throw new RuntimeException( "No pattern given. A pattern musst be"
+                		+ "specified after [-p]" );
               }             
-              pattern = args[i+1];
+              pattern = Pattern.compile(args[i+1]);
+              i += 2;
               break;
             default:
             /*
@@ -49,6 +52,7 @@ public class List {
       }
 
       String dir;
+      // dir is either a specific (sub)folder or the whole containing folder
       if (i == args.length) {
          dir = ".";
       } else {
@@ -74,13 +78,14 @@ public class List {
 
       private boolean recursive;
       private File root;
-      private String PATTERN;
+      private Pattern PATTERN;
+      private Matcher MATCHER;
 
       private DoList(File root, boolean recursive) {
-        this( root, recursive, "." );
+        this( root, recursive, Pattern.compile(".") );
       }
 
-      private DoList( File root, boolean recursive, String pattern ) {
+      private DoList( File root, boolean recursive, Pattern pattern ) {
         this.recursive = recursive;
         this.root = root;
         this.PATTERN = pattern;
@@ -94,7 +99,8 @@ public class List {
 
       @Override
       public FileVisitResult preVisitDirectory(File dir) {
-        if( dir.getName().matches(PATTERN) && dir.isFile() ) {
+    	  MATCHER = PATTERN.matcher( dir.getName() );
+        if( MATCHER.matches() && dir.isFile() ) {
           System.out.println(indent + "+ " + dir.getName());
         }
 
