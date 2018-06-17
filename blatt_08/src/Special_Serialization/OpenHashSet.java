@@ -11,9 +11,9 @@ public class OpenHashSet<T> implements HashSet<T>, Serializable {
    /**	
 	 * An auto-generated SerialVersion
 	 */
-	private static final long serialVersionUID = -4431830653862243945L;
-private MyList<T>[] buckets;
-   private DefaultHashFunction<? super T> hashFunction;
+   	private static final long serialVersionUID = -4431830653862243945L;
+    private MyList<T>[] buckets;
+    private DefaultHashFunction<? super T> hashFunction;
 
    /**
     * An <code>OpenHashSet</code> with a hash table of length 10.
@@ -40,8 +40,8 @@ private MyList<T>[] buckets;
     */
    public OpenHashSet(int size, DefaultHashFunction<? super T> hashFunction) {
       this.buckets = new MyList[size];
-      for (int i = 0; i < buckets.length; i++) {
-         buckets[i] = new MyList<T>();
+      for( int i = 0; i < size; i++ ) {
+          this.buckets[i] = null;
       }
       this.hashFunction = hashFunction;
    }
@@ -49,7 +49,16 @@ private MyList<T>[] buckets;
 
    @Override
    public boolean contains(T o) {
+       // We don't allow NULL objects to be inserted
+       if( o == null ) {
+           return true;
+       }
       MyList<T> bucket = buckets[hashCode(o) % buckets.length];
+      // If the list didn't exist before, then there
+      // should not exist an object inside it
+      if( bucket == null ) {
+          return false;
+      }
       bucket.reset();
       while (!bucket.endpos()) {
          if (equals(o, bucket.elem())) {
@@ -65,23 +74,28 @@ private MyList<T>[] buckets;
       if (contains(o)) {
          return false;
       } else {
-         buckets[hashCode(o) % buckets.length].add(o);
+          // Here we can instance our List finally
+         this.listInstance(hashCode(o) % buckets.length).add(o);
          return true;
       }
    }
 
    @Override
    public boolean delete(T o) {
-      MyList<T> bucket = buckets[hashCode(o) % buckets.length];
-      bucket.reset();
-      while (!bucket.endpos()) {
-         if (equals(o, bucket.elem())) {
-            bucket.delete();
-            return true;
-         }
-         bucket.advance();
-      }
-      return false;
+       // If the object is not inside, you might as well
+       // not bother with deleting it
+       if( this.contains( o ) ) {
+            MyList<T> bucket = buckets[hashCode(o) % buckets.length];
+            bucket.reset();
+            while (!bucket.endpos()) {
+                if (equals(o, bucket.elem())) {
+                    bucket.delete();
+                    return true;
+                }
+                bucket.advance();
+            }
+        }
+        return false;
    }
 
    private int hashCode(T o) {
@@ -96,15 +110,40 @@ private MyList<T>[] buckets;
       }
    }
 
-   /*********************************************
-    * Special Serialization
-    */
+   /********************************************
+    *       Special Serialization              *
+    ********************************************/
     public boolean testEmpty() {
-        if( buckets[0] == null ) {
-            return true;
-        } else if( buckets[0].elem() == null ) {
-            return true;   
+        for( int i = 0; i < buckets.length; i++ ) {
+            if( buckets[i] == null ) {
+                return true;
+            } else if( buckets[i].empty() ) {
+                return true;   
+            }
         }
+        
         return false;
+    }
+
+    /**
+     * Returns the instance of MyList at the given index.
+     * If it didn't exist, a new one will be created.
+     * 
+     * We make sure to instance the Lists just if
+     *  they are actually going to be used, and
+     *  not from the constructor itself
+     * 
+     * @param index
+     *              the index inside buckets, where
+     *              the MyList should be instanciated
+     * @return 
+     *          the instanced/recovered MyList at the
+     *          given index
+     */
+    public MyList<T> listInstance( int index ) {
+        if( this.buckets[index] == null ) {
+            this.buckets[index] = new MyList<T>();
+        }
+        return this.buckets[index];
     }
 }
