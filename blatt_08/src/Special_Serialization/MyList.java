@@ -1,5 +1,6 @@
 package Special_Serialization;
 
+import java.io.Serializable;
 import java.util.NoSuchElementException;
 
 /**
@@ -11,9 +12,13 @@ import java.util.NoSuchElementException;
  * @author Mathias Menninghaus (mathias.menninghaus@uos.de)
  * 
  */
-public class MyList<E> implements Cloneable {
+public class MyList<E> implements Cloneable, Serializable{
 
    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 871973183490321367L;
+/**
     * Reference on the first Entry of this List
     */
    private MyEntry<E> begin;

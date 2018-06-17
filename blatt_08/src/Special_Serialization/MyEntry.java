@@ -1,14 +1,20 @@
 package Special_Serialization;
 
+import java.io.Serializable;
+
 /**
  * An Entry holds an Object <code>o</code> and a reference <code>next</code> to
  * the next Entry such that a linked List of Entry elements is generated.
  * 
  * @author Mathias Menninghaus (mathias.menninghaus@uos.de)
  */
-class MyEntry<E> implements Cloneable {
+class MyEntry<E> implements Cloneable, Serializable {
 
-   MyEntry<E> next;
+   /**
+	 * 
+	 */
+	private static final long serialVersionUID = -5984357939888121774L;
+MyEntry<E> next;
    E o;
 
    MyEntry() {

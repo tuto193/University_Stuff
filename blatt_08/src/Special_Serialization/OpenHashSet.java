@@ -16,7 +16,7 @@ public class OpenHashSet<T> implements HashSet<T>, Serializable {
 	 */
    	private static final long serialVersionUID = -4431830653862243945L;
     private transient MyList<T>[] buckets;
-    private DefaultHashFunction<? super T> hashFunction;
+    private HashFunction<? super T> hashFunction;
 
    /**
     * An <code>OpenHashSet</code> with a hash table of length 10.
@@ -41,7 +41,7 @@ public class OpenHashSet<T> implements HashSet<T>, Serializable {
     * @param size         length of the hash table
     * @param hashFunction representation of the used hash function
     */
-   public OpenHashSet(int size, DefaultHashFunction<? super T> hashFunction) {
+   public OpenHashSet(int size, HashFunction<? super T> hashFunction) {
       this.buckets = new MyList[size];
       for( int i = 0; i < size; i++ ) {
           this.buckets[i] = null;
@@ -159,8 +159,11 @@ public class OpenHashSet<T> implements HashSet<T>, Serializable {
      *            if it encounters an IOException 
      */
     private void writeObject( ObjectOutputStream oout ) throws IOException {
+        // Create a new list to save all the objects
+        // that are inside the buckets
         MyList<T> toWrite = new MyList<T>();
         int size = 0;
+        // Save all objects in list
         for( int i = 0; i < buckets.length; i++ ) {
             if( buckets[i] != null ) {
                 buckets[i].reset();
@@ -173,6 +176,7 @@ public class OpenHashSet<T> implements HashSet<T>, Serializable {
 
         oout.writeInt(size);
         toWrite.reset();
+        // Write all objects in that order into the file
         while( !toWrite.endpos() ) {
             oout.writeObject( toWrite.elem() );
             toWrite.advance();
@@ -195,6 +199,10 @@ public class OpenHashSet<T> implements HashSet<T>, Serializable {
     private void readObject( ObjectInputStream oin ) throws IOException, ClassNotFoundException  {
         int size = oin.readInt();
 
+        // Read the objects from the file and pack
+        // them one by one into the buckets
+        // They should be in the exact same order they
+        // came in
         for( int i = 0; i < size; i++ ) {
             this.insert( (T) oin.readObject() );
         } 
