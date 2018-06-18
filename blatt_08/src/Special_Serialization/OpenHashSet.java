@@ -52,16 +52,7 @@ public class OpenHashSet<T> implements HashSet<T>, Serializable {
 
    @Override
    public boolean contains(T o) {
-       // We don't allow NULL objects to be inserted
-       if( o == null ) {
-           return true;
-       }
       MyList<T> bucket = buckets[hashCode(o) % buckets.length];
-      // If the list didn't exist before, then there
-      // should not exist an object inside it
-      if( bucket == null ) {
-          return false;
-      }
       bucket.reset();
       while (!bucket.endpos()) {
          if (equals(o, bucket.elem())) {
@@ -78,7 +69,7 @@ public class OpenHashSet<T> implements HashSet<T>, Serializable {
          return false;
       } else {
           // Here we can instance our List finally
-         this.listInstance(hashCode(o) % buckets.length).add(o);
+         this.buckets[hashCode(o) % buckets.length].add(o);
          return true;
       }
    }
@@ -116,39 +107,6 @@ public class OpenHashSet<T> implements HashSet<T>, Serializable {
    /********************************************
     *       Special Serialization              *
     ********************************************/
-   /*  public boolean testEmpty() {
-        for( int i = 0; i < buckets.length; i++ ) {
-            if( buckets[i] == null ) {
-                return true;
-            } else if( buckets[i].empty() ) {
-                return true;   
-            }
-        }
-        
-        return false;
-    } */
-
-    /**
-     * Returns the instance of MyList at the given index.
-     * If it didn't exist, a new one will be created.
-     * 
-     * We make sure to instance the Lists just if
-     *  they are actually going to be used, and
-     *  not from the constructor itself
-     * 
-     * @param index
-     *              the index inside buckets, where
-     *              the MyList should be instanciated
-     * @return 
-     *          the instanced/recovered MyList at the
-     *          given index
-     */
-    public MyList<T> listInstance( int index ) {
-        if( this.buckets[index] == null ) {
-            this.buckets[index] = new MyList<T>();
-        }
-        return this.buckets[index];
-    }
 
     /**
      * Writes a single list with all the objects contained within the buckets
@@ -159,29 +117,34 @@ public class OpenHashSet<T> implements HashSet<T>, Serializable {
      *            if it encounters an IOException 
      */
     private void writeObject( ObjectOutputStream oout ) throws IOException {
-        // Create a new list to save all the objects
+        /* // Create a new list to save all the objects
         // that are inside the buckets
-        MyList<T> toWrite = new MyList<T>();
+        MyList<T> toWrite = new MyList<T>(); */
+        // We just need a single Entry to save all of the elements of the buckets
         int size = 0;
         // Save all objects in list
         for( int i = 0; i < buckets.length; i++ ) {
-            if( buckets[i] != null ) {
-                buckets[i].reset();
-                while( !buckets[i].endpos() && buckets[i].elem() != null ) {
+            if( buckets[i].elem() != null ) {
+                while( !buckets[i].endpos() ) {
                     size++;
-                    toWrite.add( buckets[i].elem() );
+                    buckets[i].advance();
                 }
             }
+            buckets[i].reset();
         } 
 
         oout.writeInt(size);
-        toWrite.reset();
         // Write all objects in that order into the file
-        while( !toWrite.endpos() ) {
-            oout.writeObject( toWrite.elem() );
-            toWrite.advance();
+        for( int i = 0; i < buckets.length; i++ ) {
+            if( buckets[i].elem() != null ) {
+                while( !buckets[i].endpos() ) {
+                    oout.writeObject( buckets[i].elem() );
+                    buckets[i].advance();
+                }
+            }
+
         }
-    }
+            }
 
     /**
      * The List that was saved is then deserialized, 
