@@ -121,19 +121,21 @@ public class OpenHashSet<T> implements HashSet<T>, Serializable {
         // that are inside the buckets
         MyList<T> toWrite = new MyList<T>(); */
         // We just need a single Entry to save all of the elements of the buckets
-        int size = 0;
+        int bucketSize = buckets.length;
+        oout.writeInt(bucketSize);
         // Save all objects in list
         for( int i = 0; i < buckets.length; i++ ) {
+            int listSize = 0;
             if( buckets[i].elem() != null ) {
                 while( !buckets[i].endpos() ) {
-                    size++;
+                    listSize++;
                     buckets[i].advance();
                 }
             }
             buckets[i].reset();
+            oout.writeInt(listSize);
         } 
 
-        oout.writeInt(size);
         // Write all objects in that order into the file
         for( int i = 0; i < buckets.length; i++ ) {
             if( buckets[i].elem() != null ) {
@@ -160,14 +162,20 @@ public class OpenHashSet<T> implements HashSet<T>, Serializable {
      *          if it encoutners a ClassNotFoundExcpetion
      */
     private void readObject( ObjectInputStream oin ) throws IOException, ClassNotFoundException  {
-        int size = oin.readInt();
+        int bucketSize = oin.readInt();
+        MyList<T>[] newBuckets = new MyList[bucketSize];
 
         // Read the objects from the file and pack
         // them one by one into the buckets
         // They should be in the exact same order they
         // came in
-        for( int i = 0; i < size; i++ ) {
-            this.insert( (T) oin.readObject() );
+        for( int i = 0; i < bucketSize; i++ ) {
+            int list = oin.readInt();
+            newBuckets[i] = new MyList<T>();
+            for( int j = 0; j < list; j++ ) {
+                newBuckets[i].add( (T) oin.readObject() );
+            }
         } 
+        this.buckets = newBuckets;
     }
 }
